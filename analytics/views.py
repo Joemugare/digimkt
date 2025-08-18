@@ -1,0 +1,5 @@
+# Placeholder for future analytics views (e.g., dashboard)
+from django.shortcuts import render
+
+def analytics_dashboard(request):
+    return render(request, 'analytics/dashboard.html', {})

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Affiliate Links{% endblock %}
+{% block content %}
+<h1>Affiliate Links</h1>
+<div class="row">
+    {% for link in links %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ link.title }}</h5>
+                    <p class="card-text">{{ link.description }}</p>
+                    <p><strong>Category:</strong> {{ link.get_category_display }}</p>
+                    <p><strong>Program:</strong> {{ link.program }}</p>
+                    <a href="{% url 'affiliate:redirect' link.id %}" class="btn btn-primary" target="_blank">Visit Link</a>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <p>No affiliate links available.</p>
+    {% endfor %}
+</div>
+{% endblock %}

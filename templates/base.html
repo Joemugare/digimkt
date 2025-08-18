@@ -1,0 +1,1209 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Digital Marketing Blog{% endblock %}</title>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2169399263370531"
+     crossorigin="anonymous"></script>
+    
+    <!-- Bootstrap 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    
+    <!-- Meta Tags -->
+    {% block meta %}
+        <meta name="description" content="Digital marketing blog with cutting-edge tips, tools, and affiliate marketing insights for modern marketers.">
+        <meta name="keywords" content="digital marketing, affiliate marketing, SEO, social media, content marketing">
+        <meta name="author" content="Digital Marketing Blog">
+        
+        <!-- Open Graph Meta Tags -->
+        <meta property="og:title" content="{% block og_title %}Digital Marketing Blog{% endblock %}">
+        <meta property="og:description" content="{% block og_description %}Digital marketing blog with cutting-edge tips and insights{% endblock %}">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="{{ request.build_absolute_uri }}">
+        
+        <!-- Twitter Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="{% block twitter_title %}Digital Marketing Blog{% endblock %}">
+        <meta name="twitter:description" content="{% block twitter_description %}Digital marketing blog with cutting-edge tips and insights{% endblock %}">
+    {% endblock %}
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2169399263370531"
+     crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --dark-gradient: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            --light-gradient: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #f5576c;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --text-muted: #6c757d;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --shadow-heavy: 0 15px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 118, 117, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(79, 172, 254, 0.2) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0);
+            background-size: 20px 20px;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-light);
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: sticky;
+            top: 0;
+            z-index: 1030;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--text-color) !important;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.75rem 1rem !important;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--primary-gradient);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        .hero-section {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .btn-gradient {
+            background: var(--secondary-gradient);
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-gradient:hover::before {
+            left: 100%;
+        }
+
+        .btn-gradient:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-heavy);
+            color: white;
+            text-decoration: none;
+        }
+
+        .main-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px 20px 0 0;
+            margin-top: -30px;
+            position: relative;
+            z-index: 3;
+            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.1);
+            padding: 2rem 0;
+            min-height: 600px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-light);
+            background: white;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .card-img-top {
+            transform: scale(1.05);
+        }
+
+        .card-title a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .card-title a:hover {
+            color: var(--primary-color);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .alert {
+            border: none;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .newsletter-section {
+            background: var(--light-gradient);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            text-align: center;
+            box-shadow: var(--shadow-light);
+        }
+
+        .form-control {
+            border: 2px solid rgba(102, 126, 234, 0.1);
+            border-radius: 12px;
+            padding: 12px 16px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .category-btn {
+            background: rgba(102, 126, 234, 0.1);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 5px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .category-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-light);
+        }
+
+        footer {
+            background: var(--dark-gradient);
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 4rem;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: linear-gradient(to bottom right, transparent 49%, var(--dark-color) 51%);
+        }
+
+        .footer-content {
+            text-align: center;
+        }
+
+        .social-links {
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-medium);
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .main-container {
+                margin-top: -15px;
+                border-radius: 15px 15px 0 0;
+            }
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            --text-color: #e2e8f0;
+            --text-muted: #94a3b8;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 25%, #475569 50%, #64748b 75%, #1e293b 100%);
+        }
+
+        body.dark-mode .navbar {
+            background: rgba(15, 23, 42, 0.95);
+            border-bottom-color: rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .main-container {
+            background: rgba(15, 23, 42, 0.95);
+            color: var(--text-color);
+        }
+
+        body.dark-mode .card {
+            background: rgba(30, 41, 59, 0.8);
+            color: var(--text-color);
+        }
+
+        body.dark-mode footer {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            top: 50%;
+            right: 30px;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-medium);
+            z-index: 1040;
+        }
+
+        .dark-mode-toggle:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        /* Reading Progress Bar */
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: var(--primary-gradient);
+            z-index: 9999;
+            transition: width 0.3s ease;
+        }
+
+        /* Search Overlay */
+        .search-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 9998;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .search-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .search-container {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow: hidden;
+            box-shadow: var(--shadow-heavy);
+        }
+
+        body.dark-mode .search-container {
+            background: rgba(30, 41, 59, 0.95);
+            color: var(--text-color);
+        }
+
+        .search-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .search-header h3 {
+            margin: 0;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btn-close-search {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .btn-close-search:hover {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
+
+        .search-input {
+            font-size: 1.2rem;
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            border: 2px solid rgba(102, 126, 234, 0.2);
+            margin-bottom: 1rem;
+        }
+
+        .search-suggestions {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .suggestion-item {
+            padding: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .suggestion-item:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        /* Floating Social Share */
+        .floating-social {
+            position: fixed;
+            left: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1030;
+        }
+
+        .floating-social.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .social-item {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-light);
+        }
+
+        .social-item:nth-child(1) { background: #1877f2; }
+        .social-item:nth-child(2) { background: #1da1f2; }
+        .social-item:nth-child(3) { background: #0a66c2; }
+        .social-item:nth-child(4) { background: var(--primary-gradient); }
+
+        .social-item:hover {
+            transform: scale(1.1) translateX(5px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .social-item a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        /* Notification Toast */
+        .notification-toast {
+            position: fixed;
+            top: 100px;
+            right: 30px;
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-heavy);
+            transform: translateX(400px);
+            transition: all 0.3s ease;
+            z-index: 9999;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .notification-toast.show {
+            transform: translateX(0);
+        }
+
+        .toast-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toast-icon {
+            font-size: 1.2rem;
+        }
+
+        /* Scroll to Top - Updated */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-medium);
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        /* Responsive Design for New Features */
+        @media (max-width: 768px) {
+            .dark-mode-toggle {
+                right: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+            }
+
+            .floating-social {
+                left: 20px;
+            }
+
+            .social-item {
+                width: 40px;
+                height: 40px;
+            }
+
+            .scroll-to-top {
+                right: 20px;
+                bottom: 80px;
+                width: 45px;
+                height: 45px;
+            }
+
+            .search-container {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+
+            .notification-toast {
+                right: 20px;
+                left: 20px;
+                transform: translateY(-100px);
+            }
+
+            .notification-toast.show {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <nav class="navbar navbar-expand-lg" id="mainNavbar">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'blog:home' %}">
+                    <i class="fas fa-rocket me-2"></i>DigitalHub
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'blog:home' %}">
+                                <i class="fas fa-home me-1"></i>Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'affiliate:link_list' %}">
+                                <i class="fas fa-handshake me-1"></i>Partners
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link border-0 bg-transparent" id="searchToggle">
+                                <i class="fas fa-search me-1"></i>Quick Search
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#newsletter">
+                                <i class="fas fa-envelope me-1"></i>Newsletter
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section (only on homepage) -->
+    {% block hero %}{% endblock %}
+
+    <!-- Messages -->
+    {% if messages %}
+        <div class="container mt-4">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert" data-aos="fade-down">
+                    <i class="fas fa-info-circle me-2"></i>
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <!-- Main Content -->
+    <main class="main-container">
+        <div class="container py-4">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <h5 class="mb-3">DigitalHub</h5>
+                        <p class="text-muted">Your ultimate destination for cutting-edge digital marketing insights, tools, and strategies.</p>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <h6 class="mb-3">Quick Links</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="{% url 'blog:home' %}" class="text-muted">Home</a></li>
+                            <li><a href="{% url 'affiliate:link_list' %}" class="text-muted">Partners</a></li>
+                            <li><a href="{% url 'blog:search' %}" class="text-muted">Search</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <h6 class="mb-3">Follow Us</h6>
+                        <div class="social-links">
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
+                <div class="text-center">
+                    <p class="mb-0 text-muted">&copy; 2025 DigitalHub. All rights reserved. Made with <i class="fas fa-heart text-danger"></i> for marketers.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Dark Mode Toggle -->
+    <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress" id="readingProgress"></div>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-container">
+            <div class="search-header">
+                <h3><i class="fas fa-search me-2"></i>Quick Search</h3>
+                <button class="btn-close-search" id="closeSearch">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="search-form">
+                <input type="text" class="form-control search-input" placeholder="Search articles, categories, tags..." id="quickSearchInput">
+                <div class="search-suggestions" id="searchSuggestions">
+                    <!-- Dynamic suggestions will appear here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Social Share -->
+    <div class="floating-social" id="floatingSocial">
+        <div class="social-item">
+            <a href="#" onclick="shareArticle('facebook')" aria-label="Share on Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </div>
+        <div class="social-item">
+            <a href="#" onclick="shareArticle('twitter')" aria-label="Share on Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </div>
+        <div class="social-item">
+            <a href="#" onclick="shareArticle('linkedin')" aria-label="Share on LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+        <div class="social-item">
+            <a href="#" onclick="copyLink()" aria-label="Copy link">
+                <i class="fas fa-link"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="notification-toast" id="notificationToast">
+        <div class="toast-content">
+            <i class="toast-icon"></i>
+            <span class="toast-message"></span>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+
+        darkModeToggle.addEventListener('click', function() {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                localStorage.setItem('darkMode', 'enabled');
+                showNotification('Dark mode enabled', 'fas fa-moon');
+            } else {
+                darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                localStorage.setItem('darkMode', null);
+                showNotification('Light mode enabled', 'fas fa-sun');
+            }
+        });
+
+        // Reading Progress Bar
+        function updateReadingProgress() {
+            const article = document.querySelector('article') || document.querySelector('.main-container');
+            if (!article) return;
+
+            const articleHeight = article.offsetHeight;
+            const articleTop = article.offsetTop;
+            const scrollTop = window.pageYOffset;
+            const windowHeight = window.innerHeight;
+
+            const progress = Math.min(100, Math.max(0, 
+                ((scrollTop - articleTop + windowHeight) / (articleHeight + windowHeight)) * 100
+            ));
+
+            document.getElementById('readingProgress').style.width = progress + '%';
+        }
+
+        // Search Overlay Functions
+        const searchOverlay = document.getElementById('searchOverlay');
+        const searchToggle = document.getElementById('searchToggle');
+        const closeSearch = document.getElementById('closeSearch');
+        const searchInput = document.getElementById('quickSearchInput');
+        const searchSuggestions = document.getElementById('searchSuggestions');
+
+        searchToggle.addEventListener('click', function() {
+            searchOverlay.classList.add('active');
+            setTimeout(() => searchInput.focus(), 300);
+        });
+
+        closeSearch.addEventListener('click', function() {
+            searchOverlay.classList.remove('active');
+        });
+
+        searchOverlay.addEventListener('click', function(e) {
+            if (e.target === searchOverlay) {
+                searchOverlay.classList.remove('active');
+            }
+        });
+
+        // Search functionality with debounce
+        let searchTimeout;
+        searchInput.addEventListener('input', function() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                performSearch(this.value);
+            }, 300);
+        });
+
+        function performSearch(query) {
+            if (query.length < 2) {
+                searchSuggestions.innerHTML = '';
+                return;
+            }
+
+            // Mock search results (replace with actual API call)
+            const mockResults = [
+                { title: 'Digital Marketing Trends 2025', type: 'Article' },
+                { title: 'SEO Best Practices', type: 'Article' },
+                { title: 'Social Media Strategy', type: 'Article' },
+                { title: 'Affiliate Marketing', type: 'Category' },
+                { title: 'Content Marketing', type: 'Category' }
+            ].filter(item => item.title.toLowerCase().includes(query.toLowerCase()));
+
+            searchSuggestions.innerHTML = mockResults.map(item => `
+                <div class="suggestion-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span>${item.title}</span>
+                        <small class="text-muted">${item.type}</small>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Floating Social Share
+        const floatingSocial = document.getElementById('floatingSocial');
+        
+        function showFloatingSocial() {
+            if (window.scrollY > 500) {
+                floatingSocial.classList.add('visible');
+            } else {
+                floatingSocial.classList.remove('visible');
+            }
+        }
+
+        // Share Functions
+        function shareArticle(platform) {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent(document.title);
+            
+            let shareUrl = '';
+            switch(platform) {
+                case 'facebook':
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+                    break;
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
+                    break;
+                case 'linkedin':
+                    shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+                    break;
+            }
+            
+            if (shareUrl) {
+                window.open(shareUrl, '_blank', 'width=600,height=400');
+                showNotification(`Shared on ${platform}`, 'fas fa-share');
+            }
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                showNotification('Link copied to clipboard', 'fas fa-check');
+            });
+        }
+
+        // Notification System
+        function showNotification(message, iconClass = 'fas fa-info') {
+            const toast = document.getElementById('notificationToast');
+            const icon = toast.querySelector('.toast-icon');
+            const messageEl = toast.querySelector('.toast-message');
+            
+            icon.className = `toast-icon ${iconClass}`;
+            messageEl.textContent = message;
+            
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Enhanced Scroll Events
+        let ticking = false;
+        function updateOnScroll() {
+            updateReadingProgress();
+            showFloatingSocial();
+            
+            // Navbar scroll effect
+            const navbar = document.getElementById('mainNavbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // Scroll to top button
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+            
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                requestAnimationFrame(updateOnScroll);
+                ticking = true;
+            }
+        });
+
+        // Scroll to top functionality
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        scrollToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Newsletter form submission
+        document.addEventListener('DOMContentLoaded', function() {
+            const newsletterForm = document.getElementById('newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.innerHTML;
+                    
+                    // Show loading state
+                    submitBtn.innerHTML = '<span class="loading-spinner"></span> Subscribing...';
+                    submitBtn.disabled = true;
+                    
+                    // Simulate API call (replace with actual implementation)
+                    setTimeout(function() {
+                        submitBtn.innerHTML = '<i class="fas fa-check me-2"></i>Subscribed!';
+                        submitBtn.classList.remove('btn-primary');
+                        submitBtn.classList.add('btn-success');
+                        
+                        // Reset after 3 seconds
+                        setTimeout(function() {
+                            submitBtn.innerHTML = originalText;
+                            submitBtn.disabled = false;
+                            submitBtn.classList.remove('btn-success');
+                            submitBtn.classList.add('btn-primary');
+                            newsletterForm.reset();
+                        }, 3000);
+                    }, 2000);
+                });
+            }
+        });
+
+        // Add smooth scrolling to anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add fade-in animation to elements when they come into view
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card, .section-title').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+    
+    <script src="{% static 'js/scripts.js' %}"></script>
+    
+    {% block extra_js %}
+    {% endblock %}
+</body>
+
+
