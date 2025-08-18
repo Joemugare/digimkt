@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 from decouple import config
-
+import dj_database_url
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config('SECRET_KEY', default='your-secret-key-here')
@@ -117,6 +117,7 @@ CSRF_TRUSTED_ORIGINS = [
     'http://localhost',
     'http://127.0.0.1',
 ]
+
 
 
 
