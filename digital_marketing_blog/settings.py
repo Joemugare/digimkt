@@ -62,10 +62,9 @@ WSGI_APPLICATION = 'digital_marketing_blog.wsgi.application'
 # Use SQLite instead of PostgreSQL
 # --------------------------
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': '/app/db/db.sqlite3',  # Match the mount path
-    }
+    "default": dj_database_url.config(
+        default=os.environ.get("DATABASE_URL")
+    )
 }
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -118,5 +117,6 @@ CSRF_TRUSTED_ORIGINS = [
     'http://localhost',
     'http://127.0.0.1',
 ]
+
 
 
