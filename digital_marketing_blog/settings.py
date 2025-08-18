@@ -18,7 +18,7 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     'digital8hub.forum',
-    'blog-2xuq.onrender.com',
+    'digimkt.onrender.com',
 ]
 
 # --------------------------
@@ -162,3 +162,4 @@ CSRF_TRUSTED_ORIGINS = [
     'http://localhost',
     'http://127.0.0.1',
 ]
+
