@@ -128,4 +128,6 @@ CSRF_TRUSTED_ORIGINS = [
     'https://digimkt.onrender.com',
     'http://localhost',
     'http://127.0.0.1',
+    'digimkt.onrender.com',
 ]
+
