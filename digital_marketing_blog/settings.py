@@ -5,24 +5,22 @@ from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# Security settings
 SECRET_KEY = config('SECRET_KEY', default='your-secret-key-here')
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-# Application definition
 ALLOWED_HOSTS = [
-    'localhost', 
-    '127.0.0.1', 
+    'localhost',
+    '127.0.0.1',
     'digital8hub.forum',
     'digimkt.onrender.com',
+    'blog-2xuq.onrender.com',
     config('ADDITIONAL_HOST', default=''),
 ]
-
 # Remove empty strings from ALLOWED_HOSTS
 ALLOWED_HOSTS = [host for host in ALLOWED_HOSTS if host]
 
+# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -35,12 +33,10 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    
     # Third party apps
     'crispy_forms',
     'django_summernote',
     'taggit',
-    
     # Local apps
     'blog',
     'affiliate',
@@ -59,6 +55,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'analytics.middleware.AnalyticsMiddleware',
 ]
+
 ROOT_URLCONF = 'digital_marketing_blog.urls'
 
 TEMPLATES = [
@@ -79,8 +76,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'digital_marketing_blog.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+# Database configuration
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -89,7 +85,6 @@ DATABASES = {
 }
 
 # Password validation
-# https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -106,14 +101,12 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Internationalization
-# https://docs.djangoproject.com/en/4.2/topics/i18n/
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = config('TIME_ZONE', default='UTC')
 USE_I18N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [BASE_DIR / 'static']
@@ -183,6 +176,12 @@ SEO_CACHE_PREFIX = config('SEO_CACHE_PREFIX', default='seo_cache')
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'filters': {
+        'ignore_broken_pipe': {
+            '()': 'django.utils.log.CallbackFilter',
+            'callback': lambda record: not record.exc_info or not isinstance(record.exc_info[1], BrokenPipeError),
+        },
+    },
     'formatters': {
         'verbose': {
             'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
@@ -197,6 +196,7 @@ LOGGING = {
         'console': {
             'class': 'logging.StreamHandler',
             'formatter': 'simple',
+            'filters': ['ignore_broken_pipe'],
         },
         'file': {
             'class': 'logging.handlers.RotatingFileHandler',
@@ -234,13 +234,13 @@ LOGGING = {
     },
 }
 
-# Create logs directory if it doesn't exist
+# Create logs directory
 LOGS_DIR = BASE_DIR / 'logs'
 LOGS_DIR.mkdir(exist_ok=True)
 
 # Affiliate settings
 AFFILIATE_DISCLOSURE_TEXT = config(
-    'AFFILIATE_DISCLOSURE_TEXT', 
+    'AFFILIATE_DISCLOSURE_TEXT',
     default="This post contains affiliate links. We may earn a commission if you make a purchase through these links."
 )
 
@@ -285,30 +285,21 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = config('DATA_UPLOAD_MAX_NUMBER_FIELDS', default=
 ADMIN_URL = config('ADMIN_URL', default='admin/')
 
 # Performance settings
-USE_L10N = False  # Disable localization for better performance if not needed
+USE_L10N = False
 USE_THOUSAND_SEPARATOR = True
 
-# Taggit settings (for django-taggit)
+# Taggit settings
 TAGGIT_CASE_INSENSITIVE = True
 
 # Production-specific settings
 if not DEBUG:
-    # Additional security headers for production
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     X_FRAME_OPTIONS = 'DENY'
-    
-    # Force HTTPS cookies in production
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
-    
-    # Enable HSTS in production
     SECURE_HSTS_SECONDS = 31536000  # 1 year
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
-    
-    # SSL redirect in production
     SECURE_SSL_REDIRECT = True
-    
-    # Disable console logging in production, keep file logging
     LOGGING['root']['handlers'] = ['file']
     LOGGING['loggers']['django']['handlers'] = ['file']
