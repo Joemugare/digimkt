@@ -1,7 +1,5 @@
-.vs/ 
-__pycache__/ 
-*.pyc 
-*.pyo 
-.env 
-db.sqlite3 
-venv/ 
+staticfiles/
+*.pyc
+__pycache__/
+*.sqlite3
+.env

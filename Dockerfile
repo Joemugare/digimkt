@@ -1,10 +1,8 @@
-# Use official Python 3.12 slim image (compatible with Django 4.1)
 FROM python:3.12-slim
 
-# Set working directory
 WORKDIR /app
 
-# Install system dependencies for psycopg2, Pillow, etc.
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
     gcc \
@@ -14,22 +12,19 @@ RUN apt-get update && apt-get install -y \
     python3-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Install pip, setuptools, wheel, and setuptools_scm first
+# Install pip and dependencies
 RUN pip install --upgrade pip setuptools wheel setuptools_scm
-
-# Copy requirements and install project dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy project files
 COPY . .
 
-# Collect static files (optional, uncomment if needed)
-# RUN python manage.py collectstatic --noinput
+# Collect static files and run migrations
+RUN python manage.py collectstatic --noinput
 
-# Expose port (Render uses PORT environment variable)
+# Expose port
 EXPOSE 8000
 
-# Run gunicorn
-CMD ["gunicorn", "digital_marketing_blog.wsgi:application", "--bind", "0.0.0.0:8000"]
-
+# Run migrations and gunicorn
+CMD ["sh", "-c", "python manage.py migrate --noinput && gunicorn digital_marketing_blog.wsgi:application --bind 0.0.0.0:8000"]

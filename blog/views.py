@@ -306,6 +306,43 @@ def search(request):
     }
     return render(request, 'blog/search.html', context)
 
+# ------------------- Popular Posts API ------------------- #
+def popular_posts(request):
+    """API endpoint for popular posts (missing in original views)."""
+    try:
+        posts = Post.objects.filter(
+            status='published'
+        ).select_related('author', 'category').order_by('-views', '-published_at')[:10]
+        
+        posts_data = []
+        for post in posts:
+            posts_data.append({
+                'id': post.id,
+                'title': post.title,
+                'slug': post.slug,
+                'category_slug': post.category.slug,
+                'excerpt': post.excerpt or '',
+                'views': post.views or 0,
+                'published_at': post.published_at.isoformat() if post.published_at else post.created_at.isoformat(),
+                'author': post.author.get_full_name() or post.author.username if post.author else 'Unknown',
+                'url': reverse('blog:post_detail', kwargs={
+                    'category_slug': post.category.slug,
+                    'slug': post.slug
+                })
+            })
+        
+        return JsonResponse({
+            'success': True,
+            'posts': posts_data,
+            'count': len(posts_data)
+        })
+    except Exception as e:
+        logger.error(f"Error in popular_posts API: {str(e)}", exc_info=True)
+        return JsonResponse({
+            'success': False,
+            'error': 'Unable to fetch popular posts'
+        }, status=500)
+
 # ------------------- Newsletter ------------------- #
 @csrf_exempt
 @require_http_methods(["POST"])
@@ -403,6 +440,7 @@ class CategoryRSSFeed(Feed):
 # ------------------- Bookmark Post ------------------- #
 @csrf_exempt
 @login_required
+@require_http_methods(["POST"])
 def bookmark_post(request, post_id: int):
     """Toggle bookmark status for a post."""
     try:
@@ -423,6 +461,7 @@ def bookmark_post(request, post_id: int):
 # ------------------- Like Post ------------------- #
 @csrf_exempt
 @login_required
+@require_http_methods(["POST"])
 def like_post(request, post_id: int):
     """Toggle like status for a post."""
     try:
@@ -470,7 +509,11 @@ def create_post(request):
         logger.error(f"Error in create_post view: {str(e)}", exc_info=True)
         messages.error(request, 'Error creating post. Please try again.')
         return render(request, 'blog/create_post.html', {'form': PostForm()})
- 
-
     
-   
+def search(request):
+    query = request.GET.get('q', '')
+    return JsonResponse({"results": [], "query": query, "message": "Search endpoint under construction"})
+
+def search(request):
+    query = request.GET.get('q', '')
+    return JsonResponse({"results": [], "query": query, "message": "Search endpoint under construction"})
