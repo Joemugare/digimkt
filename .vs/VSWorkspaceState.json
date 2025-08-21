@@ -1,12 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\digital_marketing_blog",
-    "\\static\\css",
-    "\\static\\js",
     "\\templates",
     "\\templates\\registration"
   ],
-  "SelectedNode": "\\digital_marketing_blog\\settings.py",
+  "SelectedNode": "\\.gitignore",
   "PreviewInSolutionExplorer": false
 }

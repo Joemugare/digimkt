@@ -912,3 +912,22 @@ INFO 2025-08-21 20:26:42,091 basehttp 6396 20468 "GET /admin/jsi18n/ HTTP/1.1" 2
 INFO 2025-08-21 20:26:51,869 basehttp 6396 20468 "POST /admin/blog/category/add/ HTTP/1.1" 302 0
 INFO 2025-08-21 20:26:51,885 basehttp 6396 20468 "GET /admin/blog/category/ HTTP/1.1" 200 19320
 INFO 2025-08-21 20:26:51,937 basehttp 6396 20468 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-08-21 20:48:41,353 autoreload 18764 14124 Watching for file changes with StatReloader
+INFO 2025-08-21 20:49:04,934 basehttp 18764 17016 "GET /static/fonts/flaticon/flaticon.css HTTP/1.1" 200 124
+INFO 2025-08-21 20:49:04,942 basehttp 18764 4536 "GET /static/js/scripts.js HTTP/1.1" 200 44336
+WARNING 2025-08-21 20:49:07,156 log 18764 4536 Not Found: /favicon.ico
+WARNING 2025-08-21 20:49:07,161 basehttp 18764 4536 "GET /favicon.ico HTTP/1.1" 404 6957
+WARNING 2025-08-21 20:49:07,340 log 18764 4536 Not Found: /sw.js
+WARNING 2025-08-21 20:49:07,343 basehttp 18764 4536 "GET /sw.js HTTP/1.1" 404 6939
+INFO 2025-08-21 20:49:13,113 basehttp 18764 15176 "GET / HTTP/1.1" 200 58423
+INFO 2025-08-21 20:49:13,158 basehttp 18764 15176 "GET /static/fonts/flaticon/flaticon.css HTTP/1.1" 200 124
+INFO 2025-08-21 20:49:13,690 basehttp 18764 15176 "GET /static/css/styles.css HTTP/1.1" 200 158
+INFO 2025-08-21 20:49:14,493 basehttp 18764 15176 "GET /static/js/scripts.js HTTP/1.1" 200 44336
+WARNING 2025-08-21 20:49:15,936 log 18764 15176 Not Found: /sw.js
+WARNING 2025-08-21 20:49:15,955 basehttp 18764 15176 "GET /sw.js HTTP/1.1" 404 6939
+INFO 2025-08-21 20:49:15,991 basehttp 18764 15176 - Broken pipe from ('127.0.0.1', 59205)
+INFO 2025-08-21 20:49:16,039 basehttp 18764 1960 "GET /static/images/DigitalHub.png HTTP/1.1" 200 972766
+INFO 2025-08-21 20:49:17,051 basehttp 18764 1960 "GET /api/search/ HTTP/1.1" 200 77
+INFO 2025-08-21 20:49:17,188 basehttp 18764 1960 "GET /api/popular-posts/ HTTP/1.1" 200 1397
+INFO 2025-08-21 20:49:17,958 basehttp 18764 1960 "GET /affiliate/links/ HTTP/1.1" 200 43491
+INFO 2025-08-21 20:49:19,050 basehttp 18764 16940 "GET / HTTP/1.1" 200 58423
