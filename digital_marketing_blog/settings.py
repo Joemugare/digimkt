@@ -111,8 +111,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [BASE_DIR / 'static']
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
+# FIXED: Changed from CompressedManifestStaticFilesStorage to CompressedStaticFilesStorage
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 # WhiteNoise configuration
 WHITENOISE_MANIFEST_STRICT = False
@@ -306,6 +306,6 @@ if not DEBUG:
     LOGGING['root']['handlers'] = ['file']
     LOGGING['loggers']['django']['handlers'] = ['file']
     
-    # Redirects
+# Redirects
 LOGIN_REDIRECT_URL = '/'      # After login
 LOGOUT_REDIRECT_URL = '/'     # After logout
