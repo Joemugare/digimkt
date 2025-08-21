@@ -82,7 +82,21 @@
             transition: transform 0.2s ease;
         }
 
-        .btn-primary:hover {
+        .btn-outline-light {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 2rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s ease;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-outline-light:hover {
+            background: white;
+            color: var(--primary);
             transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
         }
@@ -92,11 +106,23 @@
             border-radius: 1rem;
             box-shadow: var(--shadow);
             overflow: hidden;
-            transition: transform 0.2s ease;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .card:hover {
             transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .bg-gradient {
+            background: var(--gradient);
+        }
+
+        .badge {
+            font-size: 0.75rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 1rem;
         }
 
         .fixed-controls {
@@ -258,9 +284,12 @@
     {% block hero %}
     <section class="hero">
         <div class="container">
-            <h1 class="display-4 fw-bold mb-4">Welcome to DigitalHub</h1>
-            <p class="lead mb-4">Your destination for digital marketing insights</p>
-            <a href="#content" class="btn-primary">Get Started</a>
+            <h1 class="display-4 fw-bold mb-4">Transform Your Digital Marketing Game</h1>
+            <p class="lead mb-4">Discover cutting-edge strategies, tools, and insights that drive real results in the digital landscape</p>
+            <div class="d-flex flex-wrap gap-3 justify-content-center">
+                <a href="#content" class="btn-primary">Explore Strategies</a>
+                <a href="{% url 'affiliate:link_list' %}" class="btn btn-outline-light">View Partners</a>
+            </div>
         </div>
     </section>
     {% endblock %}
@@ -283,25 +312,87 @@
             {% block content %}
             <div class="row">
                 <div class="col-lg-8">
-                    <h2>Latest Articles</h2>
+                    <h2 class="mb-3">Latest Articles</h2>
                     <p class="text-muted mb-4">Discover the latest in digital marketing</p>
                     
-                    <!-- Sample content -->
+                    <!-- Featured Article -->
+                    <article class="card mb-4 border-0 shadow-sm">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <div class="h-100 bg-gradient d-flex align-items-center justify-content-center text-white">
+                                    <i class="fas fa-chart-line fa-3x"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <span class="badge bg-primary mb-2">Featured</span>
+                                    <h4 class="card-title">Digital Marketing Trends 2025</h4>
+                                    <p class="card-text">Stay ahead of the curve with the most impactful digital marketing trends that will define 2025. From AI-powered personalization to voice search optimization.</p>
+                                    <p class="card-text"><small class="text-muted">Published 2 hours ago • 5 min read</small></p>
+                                    <a href="#" class="btn btn-primary">Read Full Article</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- Article Grid -->
                     <div class="row g-4">
                         <div class="col-md-6">
-                            <article class="card h-100">
-                                <div class="card-body">
-                                    <h5 class="card-title">Digital Marketing Trends 2025</h5>
-                                    <p class="card-text text-muted">Explore the latest trends shaping digital marketing.</p>
+                            <article class="card h-100 border-0 shadow-sm">
+                                <div class="card-header bg-transparent border-0 pb-0">
+                                    <span class="badge bg-success">SEO</span>
+                                </div>
+                                <div class="card-body pt-2">
+                                    <h5 class="card-title">Advanced SEO Strategies for 2025</h5>
+                                    <p class="card-text text-muted">Master the fundamentals and advanced techniques of search engine optimization that actually move the needle.</p>
+                                    <small class="text-muted">4 min read</small>
+                                </div>
+                                <div class="card-footer bg-transparent border-0">
                                     <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
                                 </div>
                             </article>
                         </div>
                         <div class="col-md-6">
-                            <article class="card h-100">
-                                <div class="card-body">
-                                    <h5 class="card-title">SEO Best Practices</h5>
-                                    <p class="card-text text-muted">Master the fundamentals of search optimization.</p>
+                            <article class="card h-100 border-0 shadow-sm">
+                                <div class="card-header bg-transparent border-0 pb-0">
+                                    <span class="badge bg-info">Social Media</span>
+                                </div>
+                                <div class="card-body pt-2">
+                                    <h5 class="card-title">Social Commerce Revolution</h5>
+                                    <p class="card-text text-muted">How social platforms are becoming the new storefronts and what brands need to know to capitalize.</p>
+                                    <small class="text-muted">6 min read</small>
+                                </div>
+                                <div class="card-footer bg-transparent border-0">
+                                    <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="col-md-6">
+                            <article class="card h-100 border-0 shadow-sm">
+                                <div class="card-header bg-transparent border-0 pb-0">
+                                    <span class="badge bg-warning">Analytics</span>
+                                </div>
+                                <div class="card-body pt-2">
+                                    <h5 class="card-title">GA4 Mastery Guide</h5>
+                                    <p class="card-text text-muted">Navigate Google Analytics 4 like a pro with actionable insights and reporting strategies.</p>
+                                    <small class="text-muted">8 min read</small>
+                                </div>
+                                <div class="card-footer bg-transparent border-0">
+                                    <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="col-md-6">
+                            <article class="card h-100 border-0 shadow-sm">
+                                <div class="card-header bg-transparent border-0 pb-0">
+                                    <span class="badge bg-danger">Conversion</span>
+                                </div>
+                                <div class="card-body pt-2">
+                                    <h5 class="card-title">CRO Secrets That Convert</h5>
+                                    <p class="card-text text-muted">Proven conversion rate optimization tactics that consistently boost your bottom line results.</p>
+                                    <small class="text-muted">7 min read</small>
+                                </div>
+                                <div class="card-footer bg-transparent border-0">
                                     <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
                                 </div>
                             </article>
