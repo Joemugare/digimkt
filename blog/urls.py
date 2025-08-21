@@ -1,5 +1,4 @@
-﻿# blog/urls.py
-from django.urls import path
+﻿from django.urls import path
 from . import views
 
 app_name = 'blog'
@@ -18,4 +17,6 @@ urlpatterns = [
     path('featured-insights/', views.featured_insights, name='featured_insights'),
     path('api/posts/<int:post_id>/bookmark/', views.bookmark_post, name='bookmark_post'),
     path('api/posts/<int:post_id>/like/', views.like_post, name='like_post'),
+    # Add the PostListAPIView endpoint
+    path('api/posts/', views.PostListAPIView.as_view(), name='post_list'),
 ]

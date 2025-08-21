@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'blog',
     'affiliate',
     'analytics',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

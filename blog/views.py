@@ -5,6 +5,9 @@ import os
 # Third-party imports
 import requests
 from dotenv import load_dotenv
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
 
 # Django imports
 from django.contrib import messages
@@ -25,9 +28,44 @@ from django.views.generic import ListView
 # Local imports
 from .forms import PostForm
 from .models import Bookmark, PostLike, Post, Category, Tag, NewsletterSubscription, Comment
+from .serializers import PostSerializer, CategorySerializer  # Ensure serializers are imported
 
 logger = logging.getLogger(__name__)
 load_dotenv()
+
+# ------------------- API Views ------------------- #
+class PostListAPIView(APIView):
+    def get(self, request):
+        posts = Post.objects.filter(status='published').select_related('author', 'category').order_by('-published_at')
+        serializer = PostSerializer(posts, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class CategoryListAPIView(APIView):
+    def get(self, request):
+        categories = Category.objects.all()
+        serializer = CategorySerializer(categories, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class SearchAPIView(APIView):
+    def get(self, request):
+        query = request.GET.get('q', '').strip()
+        posts = Post.objects.none()
+
+        if query and len(query) >= 2:
+            posts = Post.objects.filter(
+                Q(title__icontains=query) |
+                Q(content__icontains=query) |
+                Q(excerpt__icontains=query) |
+                Q(tags__name__icontains=query),
+                status='published'
+            ).select_related('author', 'category').distinct().order_by('-published_at')
+
+        serializer = PostSerializer(posts, many=True)
+        return Response({
+            'results': serializer.data,
+            'query': query,
+            'total_results': posts.count()
+        }, status=status.HTTP_200_OK)
 
 # ------------------- Featured News ------------------- #
 def get_featured_news():
@@ -60,10 +98,14 @@ def get_featured_news():
 def home(request):
     """Render the homepage with featured news, latest posts, and categories."""
     try:
+        posts = Post.objects.filter(status='published').select_related('author', 'category').order_by('-published_at')[:6]
+        categories = Category.objects.all()[:6]
+        print(f"Posts: {posts.count()}")  # Debug
+        print(f"Categories: {categories.count()}")  # Debug
         context = {
             'featured_posts': get_featured_news(),
-            'latest_posts': Post.objects.filter(status='published').select_related('author', 'category').order_by('-published_at')[:6],
-            'categories': Category.objects.all()[:6],
+            'latest_posts': posts,
+            'categories': categories,
         }
         return render(request, 'blog/home.html', context)
     except Exception as e:
@@ -204,23 +246,16 @@ class CategoryPostsView(ListView):
         if tag_slug:
             queryset = queryset.filter(tags__slug=tag_slug)
 
-        # Sorting - FIXED: Proper handling of sort parameters
+        # Sorting
         sort = self.request.GET.get('sort', 'latest').strip()
-        
-        # Define valid sort options
         sort_mapping = {
             'latest': '-published_at',
             'oldest': 'published_at', 
             'title': 'title',
             'popular': '-views'
         }
-        
-        # Get the sort field, default to latest
         sort_field = sort_mapping.get(sort, '-published_at')
-        
-        # Apply sorting
         if sort == 'popular':
-            # For popular posts, also order by published_at as secondary
             queryset = queryset.order_by('-views', '-published_at')
         else:
             queryset = queryset.order_by(sort_field)
@@ -230,19 +265,8 @@ class CategoryPostsView(ListView):
     def get_context_data(self, **kwargs):
         """Add category-related context data."""
         context = super().get_context_data(**kwargs)
-        
-        # Get all posts in this category for statistics
         all_posts = Post.objects.filter(category=self.category, status='published')
-        
-        # Calculate total views safely
-        total_views = 0
-        try:
-            for post in all_posts:
-                if hasattr(post, 'views') and post.views:
-                    total_views += post.views
-        except (AttributeError, TypeError):
-            total_views = 0
-        
+        total_views = sum(post.views or 0 for post in all_posts)
         context.update({
             'category': self.category,
             'related_categories': Category.objects.exclude(slug=self.category.slug).order_by('name')[:5],
@@ -281,11 +305,11 @@ def tag_posts(request, slug: str):
         messages.error(request, 'Error loading tag posts.')
         return redirect('blog:home')
 
-# ------------------- Search ------------------- #
+# ------------------- Search (Template View) ------------------- #
 def search(request):
     """Handle search queries for posts."""
     query = request.GET.get('q', '').strip()
-    posts = Post.objects.none()  # Start with empty queryset
+    posts = Post.objects.none()
     
     if query and len(query) >= 2:
         posts = Post.objects.filter(
@@ -308,7 +332,7 @@ def search(request):
 
 # ------------------- Popular Posts API ------------------- #
 def popular_posts(request):
-    """API endpoint for popular posts (missing in original views)."""
+    """API endpoint for popular posts."""
     try:
         posts = Post.objects.filter(
             status='published'
@@ -509,15 +533,3 @@ def create_post(request):
         logger.error(f"Error in create_post view: {str(e)}", exc_info=True)
         messages.error(request, 'Error creating post. Please try again.')
         return render(request, 'blog/create_post.html', {'form': PostForm()})
-    
-def search(request):
-    query = request.GET.get('q', '')
-    return JsonResponse({"results": [], "query": query, "message": "Search endpoint under construction"})
-
-def search(request):
-    query = request.GET.get('q', '')
-    return JsonResponse({"results": [], "query": query, "message": "Search endpoint under construction"})
-
-NEWS_API_KEY = os.getenv('NEWS_API_KEY')
-if not NEWS_API_KEY:
-    raise ValueError("Missing NEWS_API_KEY in environment variables")
