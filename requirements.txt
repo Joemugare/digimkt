@@ -1,5 +1,6 @@
 # Django framework
 Django==4.2.7
+django-allauth==0.63.6  # Add this line
 
 # Image processing
 Pillow==10.0.1
@@ -16,14 +17,12 @@ whitenoise==6.6.0
 # WSGI server
 gunicorn==21.2.0
 
-
-
 # Environment variable management
 python-decouple==3.8
 python-dotenv>=1.0.0
 dj-database-url
 psycopg2-binary
+
 # Utilities
 setuptools_scm>=7.0
 requests>=2.31.0
-
