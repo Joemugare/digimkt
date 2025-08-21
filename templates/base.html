@@ -6,129 +6,264 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Digital Marketing Blog{% endblock %}</title>
     
-    <!-- Critical CSS - Inline for first paint optimization -->
+    <!-- Critical CSS -->
     <style>
-        /* Critical Above-the-fold Styles */
         :root {
-            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --primary-color: #667eea;
-            --text-color: #333;
-            --text-muted: #6c757d;
-            --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --primary: #667eea;
+            --secondary: #f5576c;
+            --text: #2d3748;
+            --text-light: #718096;
+            --bg: #f7fafc;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        [data-theme="dark"] {
+            --text: #e2e8f0;
+            --text-light: #a0aec0;
+            --bg: #1a202c;
+            --white: #2d3748;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
-            font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+            font-family: system-ui, -apple-system, sans-serif;
             line-height: 1.6;
-            color: var(--text-color);
-            background: #f8fafc;
+            color: var(--text);
+            background: var(--bg);
+            transition: all 0.3s ease;
         }
 
         .navbar {
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            box-shadow: var(--shadow-light);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
             position: sticky;
             top: 0;
-            z-index: 1030;
+            z-index: 100;
+            transition: all 0.3s ease;
         }
 
-        .hero-section {
-            background: var(--primary-gradient);
+        .navbar.scrolled {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .hero {
+            background: var(--gradient);
             color: white;
             padding: 4rem 0;
             text-align: center;
         }
 
-        .main-container {
-            background: white;
-            border-radius: 20px 20px 0 0;
-            margin-top: -30px;
+        .main-content {
+            background: var(--white);
+            border-radius: 1.5rem 1.5rem 0 0;
+            margin-top: -2rem;
             position: relative;
-            z-index: 3;
-            padding: 2rem 0;
-            min-height: 600px;
+            z-index: 2;
+            min-height: 60vh;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 2rem;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .fixed-controls {
+            position: fixed;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            z-index: 50;
+        }
+
+        .control-btn {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            border: none;
+            background: var(--gradient);
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .control-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .search-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 200;
+        }
+
+        .search-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .search-modal {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 1rem;
+            width: 90%;
+            max-width: 32rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 0.5rem;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--gradient);
+            transition: width 0.1s ease;
+            z-index: 150;
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @media (max-width: 768px) {
+            .fixed-controls {
+                right: 0.5rem;
+                top: auto;
+                bottom: 1rem;
+                transform: none;
+                flex-direction: row;
+            }
+            
+            .control-btn {
+                width: 2.5rem;
+                height: 2.5rem;
+            }
         }
     </style>
 
-    <!-- Preload critical resources -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" as="style">
-    
-    <!-- DNS prefetch for external domains -->
-    <link rel="dns-prefetch" href="//pagead2.googlesyndication.com">
-    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
-    <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
-
-    <!-- Async load non-critical CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"></noscript>
-    
-    <!-- Load fonts asynchronously -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
-
     <!-- Meta Tags -->
-    {% block meta %}
-        <meta name="description" content="Digital marketing blog with cutting-edge tips, tools, and affiliate marketing insights for modern marketers.">
-        <meta name="keywords" content="digital marketing, affiliate marketing, SEO, social media, content marketing">
-        <meta name="author" content="Digital Marketing Blog">
-        
-        <!-- Open Graph Meta Tags -->
-        <meta property="og:title" content="{% block og_title %}Digital Marketing Blog{% endblock %}">
-        <meta property="og:description" content="{% block og_description %}Digital marketing blog with cutting-edge tips and insights{% endblock %}">
-        <meta property="og:type" content="website">
-        <meta property="og:url" content="{{ request.build_absolute_uri }}">
-        
-        <!-- Twitter Meta Tags -->
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="{% block twitter_title %}Digital Marketing Blog{% endblock %}">
-        <meta name="twitter:description" content="{% block twitter_description %}Digital marketing blog with cutting-edge tips and insights{% endblock %}">
-    {% endblock %}
-
-    <!-- Service Worker Registration -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js').catch(() => {});
-            });
-        }
-    </script>
+    <meta name="description" content="{% block description %}Digital marketing insights and strategies{% endblock %}">
+    <meta name="keywords" content="digital marketing, SEO, social media, affiliate marketing">
+    <meta property="og:title" content="{% block og_title %}{{ block.super }}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{{ block.super }}{% endblock %}">
+    <meta property="og:type" content="website">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    
+    <!-- Load Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
-<body>
-    <!-- Critical HTML Structure -->
-    <header>
-        <nav class="navbar navbar-expand-lg" id="mainNavbar">
-            <div class="container">
-                <a class="navbar-brand" href="{% url 'blog:home' %}">
-                    <i class="fas fa-rocket me-2"></i>DigitalHub
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'blog:home' %}">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'affiliate:link_list' %}">Partners</a>
-                        </li>
-                        <li class="nav-item">
-                            <button class="nav-link border-0 bg-transparent" id="searchToggle">Search</button>
-                        </li>
-                    </ul>
-                </div>
+
+<body data-theme="light">
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress" id="readingProgress" style="width: 0%"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg" id="navbar">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{% url 'blog:home' %}">
+                <i class="fas fa-rocket me-2"></i>DigitalHub
+            </a>
+            
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'blog:home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'affiliate:link_list' %}">Partners</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link btn border-0 bg-transparent" id="searchBtn">
+                            <i class="fas fa-search"></i> Search
+                        </button>
+                    </li>
+                </ul>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
     <!-- Hero Section -->
-    {% block hero %}{% endblock %}
+    {% block hero %}
+    <section class="hero">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-4">Welcome to DigitalHub</h1>
+            <p class="lead mb-4">Your destination for digital marketing insights</p>
+            <a href="#content" class="btn-primary">Get Started</a>
+        </div>
+    </section>
+    {% endblock %}
 
     <!-- Messages -->
     {% if messages %}
@@ -143,1089 +278,307 @@
     {% endif %}
 
     <!-- Main Content -->
-    <main class="main-container">
-        <div class="container py-4">
+    <main class="main-content" id="content">
+        <div class="container py-5">
             {% block content %}
+            <div class="row">
+                <div class="col-lg-8">
+                    <h2>Latest Articles</h2>
+                    <p class="text-muted mb-4">Discover the latest in digital marketing</p>
+                    
+                    <!-- Sample content -->
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <article class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Digital Marketing Trends 2025</h5>
+                                    <p class="card-text text-muted">Explore the latest trends shaping digital marketing.</p>
+                                    <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="col-md-6">
+                            <article class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">SEO Best Practices</h5>
+                                    <p class="card-text text-muted">Master the fundamentals of search optimization.</p>
+                                    <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+                
+                <aside class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-title">Popular Topics</h6>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge bg-light text-dark">SEO</span>
+                                <span class="badge bg-light text-dark">Social Media</span>
+                                <span class="badge bg-light text-dark">Content Marketing</span>
+                                <span class="badge bg-light text-dark">Analytics</span>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
             {% endblock %}
         </div>
     </main>
 
-    <!-- Lazy-loaded footer -->
-    <footer id="footer" class="d-none">
+    <!-- Fixed Controls -->
+    <div class="fixed-controls">
+        <button class="control-btn" id="themeToggle" title="Toggle dark mode" aria-label="Toggle theme">
+            <i class="fas fa-moon"></i>
+        </button>
+        <button class="control-btn scroll-top" id="scrollTop" title="Scroll to top" aria-label="Scroll to top">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+    </div>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-modal">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="mb-0">Quick Search</h5>
+                <button class="btn-close" id="closeSearch" aria-label="Close search"></button>
+            </div>
+            <input type="text" class="search-input" placeholder="Search articles..." id="searchInput" autocomplete="off">
+            <div id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-5 mt-5">
         <div class="container">
-            <div class="footer-content">
-                <div class="row">
-                    <div class="col-md-4 mb-4">
-                        <h5 class="mb-3">DigitalHub</h5>
-                        <p class="text-muted">Your ultimate destination for cutting-edge digital marketing insights.</p>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <h6 class="mb-3">Quick Links</h6>
-                        <ul class="list-unstyled">
-                            <li><a href="{% url 'blog:home' %}" class="text-muted">Home</a></li>
-                            <li><a href="{% url 'affiliate:link_list' %}" class="text-muted">Partners</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <h6 class="mb-3">Follow Us</h6>
-                        <div class="social-links">
-                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5 class="mb-3">DigitalHub</h5>
+                    <p class="text-muted">Your destination for digital marketing insights and strategies.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h6 class="mb-3">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'blog:home' %}" class="text-muted text-decoration-none">Home</a></li>
+                        <li><a href="{% url 'affiliate:link_list' %}" class="text-muted text-decoration-none">Partners</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h6 class="mb-3">Follow Us</h6>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-light" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-light" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-light" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
-                <hr class="my-4">
-                <div class="text-center">
-                    <p class="mb-0 text-muted">&copy; 2025 DigitalHub. All rights reserved.</p>
-                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="mb-0 text-muted">&copy; 2025 DigitalHub. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- UI Components - Initially Hidden -->
-    <div id="ui-components" class="d-none">
-        <!-- Dark Mode Toggle -->
-        <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
-            <i class="fas fa-moon"></i>
-        </button>
-
-        <!-- Reading Progress Bar -->
-        <div class="reading-progress" id="readingProgress"></div>
-
-        <!-- Scroll to Top -->
-        <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
-            <i class="fas fa-chevron-up"></i>
-        </button>
-
-        <!-- Search Overlay -->
-        <div class="search-overlay" id="searchOverlay">
-            <div class="search-container">
-                <div class="search-header">
-                    <h3>Quick Search</h3>
-                    <button class="btn-close-search" id="closeSearch">×</button>
-                </div>
-                <input type="text" class="form-control search-input" placeholder="Search..." id="quickSearchInput">
-                <div class="search-suggestions" id="searchSuggestions"></div>
-            </div>
-        </div>
-
-        <!-- Notification Toast -->
-        <div class="notification-toast" id="notificationToast">
-            <div class="toast-content">
-                <i class="toast-icon"></i>
-                <span class="toast-message"></span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Performance Optimized Scripts -->
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
     <script>
-        // Performance monitoring
-        const perf = {
-            start: performance.now(),
-            marks: {},
-            measure: function(name) {
-                this.marks[name] = performance.now();
-                console.log(`${name}: ${this.marks[name] - this.start}ms`);
-            }
-        };
-
-        // Critical JavaScript - Inline for immediate execution
-        class PerformanceOptimizer {
+        class SiteManager {
             constructor() {
-                this.lazyElements = new Set();
-                this.observers = {};
-                this.rafId = null;
-                this.scrollTimeout = null;
-                this.resizeTimeout = null;
-                this.init();
-            }
-
-            init() {
-                perf.measure('JS Init Start');
-                this.setupCriticalFeatures();
-                this.setupLazyLoading();
+                this.initializeTheme();
                 this.setupEventListeners();
-                this.loadNonCriticalAssets();
-                perf.measure('JS Init Complete');
+                this.setupScrollEffects();
+                this.setupSearch();
             }
 
-            setupCriticalFeatures() {
-                // Dark mode from localStorage (synchronous to prevent flash)
-                const darkMode = localStorage.getItem('darkMode');
-                if (darkMode === 'enabled') {
-                    document.body.classList.add('dark-mode');
-                }
-            }
-
-            setupLazyLoading() {
-                // Intersection Observer for lazy loading
-                this.observers.lazy = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            this.loadElement(entry.target);
-                            this.observers.lazy.unobserve(entry.target);
-                        }
-                    });
-                }, { rootMargin: '50px' });
-
-                // Observer for animations
-                this.observers.animate = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('fade-in');
-                        }
-                    });
-                }, { threshold: 0.1 });
-            }
-
-            loadElement(element) {
-                if (element.dataset.src) {
-                    element.src = element.dataset.src;
-                    element.removeAttribute('data-src');
-                }
-                if (element.dataset.background) {
-                    element.style.backgroundImage = `url(${element.dataset.background})`;
-                    element.removeAttribute('data-background');
-                }
+            initializeTheme() {
+                const savedTheme = localStorage.getItem('theme') || 'light';
+                document.body.setAttribute('data-theme', savedTheme);
+                this.updateThemeIcon(savedTheme);
             }
 
             setupEventListeners() {
-                // Throttled scroll handler
-                let scrollTicking = false;
-                window.addEventListener('scroll', () => {
-                    if (!scrollTicking) {
-                        requestAnimationFrame(() => {
-                            this.handleScroll();
-                            scrollTicking = false;
-                        });
-                        scrollTicking = true;
-                    }
-                }, { passive: true });
-
-                // Debounced resize handler
-                window.addEventListener('resize', () => {
-                    clearTimeout(this.resizeTimeout);
-                    this.resizeTimeout = setTimeout(() => this.handleResize(), 150);
-                }, { passive: true });
-
-                // Keyboard shortcuts
-                document.addEventListener('keydown', (e) => {
-                    if (e.ctrlKey || e.metaKey) {
-                        switch(e.key) {
-                            case 'k':
-                                e.preventDefault();
-                                this.toggleSearch();
-                                break;
-                            case 'd':
-                                e.preventDefault();
-                                this.toggleDarkMode();
-                                break;
-                        }
-                    }
-                    if (e.key === 'Escape') {
-                        this.closeModals();
-                    }
-                });
-            }
-
-            handleScroll() {
-                const scrollY = window.pageYOffset;
-                
-                // Update reading progress
-                this.updateReadingProgress(scrollY);
-                
-                // Show/hide UI elements
-                this.toggleScrollElements(scrollY);
-                
-                // Navbar scroll effect
-                const navbar = document.getElementById('mainNavbar');
-                navbar?.classList.toggle('scrolled', scrollY > 50);
-            }
-
-            updateReadingProgress(scrollY) {
-                const progressBar = document.getElementById('readingProgress');
-                if (!progressBar) return;
-
-                const article = document.querySelector('article') || document.querySelector('.main-container');
-                if (!article) return;
-
-                const progress = Math.min(100, Math.max(0, 
-                    ((scrollY - article.offsetTop + window.innerHeight) / 
-                     (article.offsetHeight + window.innerHeight)) * 100
-                ));
-
-                progressBar.style.width = `${progress}%`;
-            }
-
-            toggleScrollElements(scrollY) {
-                const scrollToTop = document.getElementById('scrollToTop');
-                const floatingSocial = document.getElementById('floatingSocial');
-                
-                const isVisible = scrollY > 300;
-                scrollToTop?.classList.toggle('visible', isVisible);
-                floatingSocial?.classList.toggle('visible', scrollY > 500);
-            }
-
-            handleResize() {
-                // Handle responsive layout changes
-                this.updateLayout();
-            }
-
-            updateLayout() {
-                // Recalculate layout-dependent elements
-                const isMobile = window.innerWidth < 768;
-                document.body.classList.toggle('mobile-layout', isMobile);
-            }
-
-            toggleSearch() {
-                const overlay = document.getElementById('searchOverlay');
-                const input = document.getElementById('quickSearchInput');
-                
-                if (overlay?.classList.contains('active')) {
-                    overlay.classList.remove('active');
-                } else {
-                    overlay?.classList.add('active');
-                    setTimeout(() => input?.focus(), 100);
-                }
-            }
-
-            toggleDarkMode() {
-                const body = document.body;
-                const toggle = document.getElementById('darkModeToggle');
-                
-                body.classList.toggle('dark-mode');
-                
-                if (body.classList.contains('dark-mode')) {
-                    toggle.innerHTML = '<i class="fas fa-sun"></i>';
-                    localStorage.setItem('darkMode', 'enabled');
-                } else {
-                    toggle.innerHTML = '<i class="fas fa-moon"></i>';
-                    localStorage.removeItem('darkMode');
-                }
-            }
-
-            closeModals() {
-                document.getElementById('searchOverlay')?.classList.remove('active');
-            }
-
-            async loadNonCriticalAssets() {
-                // Load non-critical resources after initial render
-                await this.loadCSS();
-                await this.loadScripts();
-                this.initializeFeatures();
-                perf.measure('Non-critical assets loaded');
-            }
-
-            async loadCSS() {
-                const cssToLoad = [
-                    'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
-                    '{% static "css/styles.css" %}'
-                ];
-
-                const loadPromises = cssToLoad.map(href => {
-                    return new Promise((resolve) => {
-                        const link = document.createElement('link');
-                        link.rel = 'stylesheet';
-                        link.href = href;
-                        link.onload = resolve;
-                        link.onerror = resolve; // Don't block on errors
-                        document.head.appendChild(link);
-                    });
+                // Theme toggle
+                document.getElementById('themeToggle')?.addEventListener('click', () => {
+                    this.toggleTheme();
                 });
 
-                await Promise.all(loadPromises);
-            }
-
-            async loadScripts() {
-                // Load scripts in order of priority
-                await this.loadScript('https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js');
-                
-                // Load optional scripts in parallel
-                Promise.all([
-                    this.loadScript('https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js'),
-                    this.loadScript('{% static "js/scripts.js" %}')
-                ]).then(() => {
-                    // Initialize AOS only after it's loaded
-                    if (window.AOS) {
-                        AOS.init({
-                            duration: 600,
-                            easing: 'ease-out',
-                            once: true,
-                            offset: 50
-                        });
-                    }
-                });
-            }
-
-            loadScript(src) {
-                return new Promise((resolve, reject) => {
-                    const script = document.createElement('script');
-                    script.src = src;
-                    script.onload = resolve;
-                    script.onerror = reject;
-                    document.body.appendChild(script);
-                });
-            }
-
-            initializeFeatures() {
-                // Show UI components after everything is loaded
-                const uiComponents = document.getElementById('ui-components');
-                const footer = document.getElementById('footer');
-                
-                uiComponents?.classList.remove('d-none');
-                footer?.classList.remove('d-none');
-
-                // Initialize enhanced features
-                this.setupSearch();
-                this.setupNotifications();
-                this.setupSocialShare();
-                this.bindEventHandlers();
-            }
-
-            setupSearch() {
-                let searchCache = new Map();
-                let searchTimeout;
-
-                const searchInput = document.getElementById('quickSearchInput');
-                const suggestions = document.getElementById('searchSuggestions');
-
-                searchInput?.addEventListener('input', (e) => {
-                    clearTimeout(searchTimeout);
-                    searchTimeout = setTimeout(() => {
-                        this.performSearch(e.target.value, searchCache, suggestions);
-                    }, 200);
-                });
-            }
-
-            performSearch(query, cache, suggestionsEl) {
-                if (query.length < 2) {
-                    suggestionsEl.innerHTML = '';
-                    return;
-                }
-
-                // Check cache first
-                if (cache.has(query)) {
-                    this.displaySearchResults(cache.get(query), suggestionsEl);
-                    return;
-                }
-
-                // Simulate API call with caching
-                const mockResults = [
-                    { title: 'Digital Marketing Trends 2025', type: 'Article', url: '#' },
-                    { title: 'SEO Best Practices', type: 'Article', url: '#' },
-                    { title: 'Social Media Strategy', type: 'Article', url: '#' },
-                    { title: 'Affiliate Marketing', type: 'Category', url: '#' }
-                ].filter(item => item.title.toLowerCase().includes(query.toLowerCase()));
-
-                cache.set(query, mockResults);
-                this.displaySearchResults(mockResults, suggestionsEl);
-            }
-
-            displaySearchResults(results, container) {
-                container.innerHTML = results.map(item => `
-                    <div class="suggestion-item" data-url="${item.url}">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span>${item.title}</span>
-                            <small class="text-muted">${item.type}</small>
-                        </div>
-                    </div>
-                `).join('');
-
-                // Add click handlers
-                container.querySelectorAll('.suggestion-item').forEach(item => {
-                    item.addEventListener('click', () => {
-                        window.location.href = item.dataset.url;
-                    });
-                });
-            }
-
-            setupNotifications() {
-                this.notificationQueue = [];
-                this.isShowingNotification = false;
-            }
-
-            showNotification(message, iconClass = 'fas fa-info', duration = 3000) {
-                this.notificationQueue.push({ message, iconClass, duration });
-                if (!this.isShowingNotification) {
-                    this.processNotificationQueue();
-                }
-            }
-
-            processNotificationQueue() {
-                if (this.notificationQueue.length === 0) {
-                    this.isShowingNotification = false;
-                    return;
-                }
-
-                this.isShowingNotification = true;
-                const { message, iconClass, duration } = this.notificationQueue.shift();
-                const toast = document.getElementById('notificationToast');
-                
-                if (!toast) return;
-
-                const icon = toast.querySelector('.toast-icon');
-                const messageEl = toast.querySelector('.toast-message');
-                
-                icon.className = `toast-icon ${iconClass}`;
-                messageEl.textContent = message;
-                
-                toast.classList.add('show');
-                
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                    setTimeout(() => this.processNotificationQueue(), 300);
-                }, duration);
-            }
-
-            setupSocialShare() {
-                // Lazy load social sharing functionality
-                window.shareArticle = (platform) => {
-                    const url = encodeURIComponent(window.location.href);
-                    const title = encodeURIComponent(document.title);
-                    
-                    const shareUrls = {
-                        facebook: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
-                        twitter: `https://twitter.com/intent/tweet?url=${url}&text=${title}`,
-                        linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${url}`
-                    };
-                    
-                    if (shareUrls[platform]) {
-                        window.open(shareUrls[platform], '_blank', 'width=600,height=400');
-                        this.showNotification(`Shared on ${platform}`, 'fas fa-share');
-                    }
-                };
-
-                window.copyLink = () => {
-                    navigator.clipboard.writeText(window.location.href).then(() => {
-                        this.showNotification('Link copied!', 'fas fa-check');
-                    });
-                };
-            }
-
-            bindEventHandlers() {
-                // Search toggle
-                document.getElementById('searchToggle')?.addEventListener('click', () => {
+                // Search
+                document.getElementById('searchBtn')?.addEventListener('click', () => {
                     this.toggleSearch();
                 });
 
                 document.getElementById('closeSearch')?.addEventListener('click', () => {
-                    this.closeModals();
-                });
-
-                // Dark mode toggle
-                document.getElementById('darkModeToggle')?.addEventListener('click', () => {
-                    this.toggleDarkMode();
+                    this.closeSearch();
                 });
 
                 // Scroll to top
-                document.getElementById('scrollToTop')?.addEventListener('click', () => {
+                document.getElementById('scrollTop')?.addEventListener('click', () => {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
 
                 // Close search on overlay click
                 document.getElementById('searchOverlay')?.addEventListener('click', (e) => {
                     if (e.target.id === 'searchOverlay') {
-                        this.closeModals();
+                        this.closeSearch();
+                    }
+                });
+
+                // Keyboard shortcuts
+                document.addEventListener('keydown', (e) => {
+                    if (e.ctrlKey && e.key === 'k') {
+                        e.preventDefault();
+                        this.toggleSearch();
+                    }
+                    if (e.key === 'Escape') {
+                        this.closeSearch();
                     }
                 });
             }
+
+            setupScrollEffects() {
+                let ticking = false;
+                
+                window.addEventListener('scroll', () => {
+                    if (!ticking) {
+                        requestAnimationFrame(() => {
+                            this.updateScrollElements();
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
+                }, { passive: true });
+            }
+
+            updateScrollElements() {
+                const scrollY = window.scrollY;
+                const navbar = document.getElementById('navbar');
+                const scrollTop = document.getElementById('scrollTop');
+                const progress = document.getElementById('readingProgress');
+
+                // Navbar scroll effect
+                if (navbar) {
+                    navbar.classList.toggle('scrolled', scrollY > 50);
+                }
+
+                // Show/hide scroll to top button
+                if (scrollTop) {
+                    scrollTop.classList.toggle('visible', scrollY > 300);
+                }
+
+                // Update reading progress
+                if (progress) {
+                    const main = document.querySelector('main');
+                    if (main) {
+                        const totalHeight = main.offsetHeight;
+                        const progressPercent = Math.min(100, Math.max(0, 
+                            (scrollY / (totalHeight - window.innerHeight)) * 100
+                        ));
+                        progress.style.width = `${progressPercent}%`;
+                    }
+                }
+            }
+
+            toggleTheme() {
+                const current = document.body.getAttribute('data-theme');
+                const newTheme = current === 'light' ? 'dark' : 'light';
+                
+                document.body.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                this.updateThemeIcon(newTheme);
+            }
+
+            updateThemeIcon(theme) {
+                const icon = document.querySelector('#themeToggle i');
+                if (icon) {
+                    icon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+                }
+            }
+
+            setupSearch() {
+                const searchInput = document.getElementById('searchInput');
+                const searchResults = document.getElementById('searchResults');
+                
+                if (!searchInput || !searchResults) return;
+
+                let searchTimeout;
+                
+                searchInput.addEventListener('input', (e) => {
+                    clearTimeout(searchTimeout);
+                    searchTimeout = setTimeout(() => {
+                        this.performSearch(e.target.value, searchResults);
+                    }, 300);
+                });
+            }
+
+            performSearch(query, resultsEl) {
+                if (!query || query.length < 2) {
+                    resultsEl.innerHTML = '';
+                    return;
+                }
+
+                // Mock search results - replace with actual search logic
+                const mockResults = [
+                    { title: 'Digital Marketing Trends 2025', url: '#' },
+                    { title: 'SEO Best Practices Guide', url: '#' },
+                    { title: 'Social Media Strategy Tips', url: '#' }
+                ].filter(item => 
+                    item.title.toLowerCase().includes(query.toLowerCase())
+                );
+
+                if (mockResults.length === 0) {
+                    resultsEl.innerHTML = '<p class="text-muted mt-3">No results found.</p>';
+                    return;
+                }
+
+                resultsEl.innerHTML = mockResults.map(item => `
+                    <div class="border-bottom py-2">
+                        <a href="${item.url}" class="text-decoration-none d-block">
+                            <strong>${item.title}</strong>
+                        </a>
+                    </div>
+                `).join('');
+            }
+
+            toggleSearch() {
+                const overlay = document.getElementById('searchOverlay');
+                const input = document.getElementById('searchInput');
+                
+                if (overlay?.classList.contains('active')) {
+                    this.closeSearch();
+                } else {
+                    overlay?.classList.add('active');
+                    setTimeout(() => input?.focus(), 100);
+                }
+            }
+
+            closeSearch() {
+                const overlay = document.getElementById('searchOverlay');
+                overlay?.classList.remove('active');
+            }
         }
 
-        // Initialize optimizer when DOM is ready
+        // Initialize when DOM is ready
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', () => {
-                window.optimizer = new PerformanceOptimizer();
+                new SiteManager();
             });
         } else {
-            window.optimizer = new PerformanceOptimizer();
+            new SiteManager();
         }
 
-        // Image lazy loading with Intersection Observer
-        document.addEventListener('DOMContentLoaded', () => {
-            const imageObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.dataset.src;
-                        img.classList.remove('lazy');
-                        imageObserver.unobserve(img);
-                    }
-                });
-            });
-
-            document.querySelectorAll('img[data-src]').forEach(img => {
-                imageObserver.observe(img);
-            });
-        });
-
-        // Resource hints for better loading
-        function addResourceHints() {
-            const hints = [
-                { rel: 'prefetch', href: '/api/search/' },
-                { rel: 'prefetch', href: '/api/popular-posts/' },
-                { rel: 'dns-prefetch', href: '//analytics.google.com' }
-            ];
-
-            hints.forEach(hint => {
-                const link = document.createElement('link');
-                Object.assign(link, hint);
-                document.head.appendChild(link);
-            });
-        }
-
-        // Load resource hints after initial page load
-        window.addEventListener('load', () => {
-            setTimeout(addResourceHints, 1000);
-        });
-    </script>
-
-    <!-- Load non-critical CSS after page load -->
-    <style id="non-critical-styles">
-        /* Full styles loaded after critical content */
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-            min-height: 100vh;
-            position: relative;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 118, 117, 0.3) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .navbar {
-            transition: all 0.2s ease;
-            will-change: background-color, box-shadow;
-        }
-
-        .navbar.scrolled {
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-        }
-
-        .navbar-brand {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            font-size: 1.5rem;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            transition: transform 0.2s ease;
-            will-change: transform;
-        }
-
-        .navbar-brand:hover {
-            transform: scale(1.05);
-        }
-
-        .nav-link {
-            font-weight: 500;
-            color: var(--text-color) !important;
-            transition: all 0.2s ease;
-            position: relative;
-            padding: 0.75rem 1rem !important;
-            border-radius: 8px;
-            will-change: transform, background-color;
-        }
-
-        .nav-link:hover {
-            color: var(--primary-color) !important;
-            background: rgba(102, 126, 234, 0.1);
-            transform: translateY(-1px);
-        }
-
-        .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .btn-gradient {
-            background: var(--secondary-gradient);
-            border: none;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.2s ease;
-            box-shadow: var(--shadow-light);
-            will-change: transform, box-shadow;
-        }
-
-        .btn-gradient:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
-            color: white;
-            text-decoration: none;
-        }
-
-        .card {
-            border: none;
-            border-radius: 15px;
-            overflow: hidden;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: var(--shadow-light);
-            background: white;
-            will-change: transform;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
-        }
-
-        .card-img-top {
-            height: 200px;
-            object-fit: cover;
-            transition: transform 0.2s ease;
-            will-change: transform;
-        }
-
-        .card:hover .card-img-top {
-            transform: scale(1.02);
-        }
-
-        /* Dark Mode Styles */
-        body.dark-mode {
-            --text-color: #e2e8f0;
-            --text-muted: #94a3b8;
-            background: linear-gradient(135deg, #1e293b 0%, #334155 25%, #475569 50%, #64748b 75%, #1e293b 100%);
-        }
-
-        body.dark-mode .navbar {
-            background: rgba(15, 23, 42, 0.95);
-        }
-
-        body.dark-mode .main-container {
-            background: rgba(15, 23, 42, 0.95);
-            color: var(--text-color);
-        }
-
-        body.dark-mode .card {
-            background: rgba(30, 41, 59, 0.8);
-            color: var(--text-color);
-        }
-
-        /* UI Components Styles */
-        .dark-mode-toggle {
-            position: fixed;
-            top: 50%;
-            right: 30px;
-            transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--primary-gradient);
-            border: none;
-            color: white;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-            box-shadow: var(--shadow-light);
-            z-index: 1040;
-            will-change: transform;
-        }
-
-        .dark-mode-toggle:hover {
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .reading-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 3px;
-            background: var(--primary-gradient);
-            z-index: 9999;
-            transition: width 0.1s ease;
-            will-change: width;
-        }
-
-        .search-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 9998;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.2s ease;
-        }
-
-        .search-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .search-container {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            width: 90%;
-            max-width: 600px;
-            max-height: 80vh;
-            overflow: hidden;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
-        }
-
-        .search-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .search-input {
-            font-size: 1.1rem;
-            padding: 0.75rem 1rem;
-            border-radius: 12px;
-            border: 2px solid rgba(102, 126, 234, 0.2);
-            margin-bottom: 1rem;
-            width: 100%;
-        }
-
-        .search-suggestions {
-            max-height: 300px;
-            overflow-y: auto;
-        }
-
-        .suggestion-item {
-            padding: 0.75rem;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.15s ease;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .suggestion-item:hover {
-            background: var(--primary-color);
-            color: white;
-            transform: translateX(3px);
-        }
-
-        .scroll-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--primary-gradient);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: var(--shadow-light);
-            opacity: 0;
-            visibility: hidden;
-            will-change: transform, opacity;
-        }
-
-        .scroll-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .scroll-to-top:hover {
-            transform: translateY(-3px);
-        }
-
-        .notification-toast {
-            position: fixed;
-            top: 100px;
-            right: 30px;
-            background: white;
-            padding: 1rem 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
-            transform: translateX(400px);
-            transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            z-index: 9999;
-            border-left: 4px solid var(--primary-color);
-        }
-
-        .notification-toast.show {
-            transform: translateX(0);
-        }
-
-        .toast-content {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .fade-in {
-            animation: fadeIn 0.4s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Lazy loading placeholder */
-        .lazy {
-            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-            background-size: 200% 100%;
-            animation: loading 1.5s infinite;
-        }
-
-        @keyframes loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-
-        /* Optimized responsive breakpoints */
-        @media (max-width: 768px) {
-            .dark-mode-toggle {
-                right: 20px;
-                width: 45px;
-                height: 45px;
-            }
-
-            .scroll-to-top {
-                right: 20px;
-                bottom: 20px;
-                width: 45px;
-                height: 45px;
-            }
-
-            .search-container {
-                padding: 1.5rem;
-                margin: 1rem;
-            }
-
-            .notification-toast {
-                right: 15px;
-                left: 15px;
-                transform: translateY(-100px);
-            }
-
-            .notification-toast.show {
-                transform: translateY(0);
-            }
-        }
-
-        /* Footer styles */
-        footer {
-            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-            color: white;
-            padding: 3rem 0 1rem;
-            margin-top: 4rem;
-        }
-
-        footer a {
-            color: #94a3b8;
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        footer a:hover {
-            color: white;
-        }
-
-        .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            margin: 0 10px;
-            transition: all 0.2s ease;
-        }
-
-        .social-links a:hover {
-            color: #f5576c;
-            transform: translateY(-2px);
-        }
-
-        /* Performance optimizations */
-        * {
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        /* Reduce motion for users who prefer it */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        /* GPU acceleration for frequently animated elements */
-        .navbar, .card, .btn-gradient, .dark-mode-toggle, .scroll-to-top {
-            transform: translateZ(0);
-            backface-visibility: hidden;
-        }
-
-        /* Optimize repaints */
-        .reading-progress {
-            contain: layout style paint;
-        }
-
-        /* Content visibility for off-screen elements */
-        .footer-content {
-            content-visibility: auto;
-            contain-intrinsic-size: 300px;
-        }
-    </style>
-
-    <!-- Load Google Analytics asynchronously after page load -->
-    <script>
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                // Load analytics only after everything else is ready
-                if (typeof gtag === 'undefined') {
-                    const script = document.createElement('script');
-                    script.async = true;
-                    script.src = 'https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID';
-                    document.head.appendChild(script);
-                    
-                    script.onload = () => {
-                        window.dataLayer = window.dataLayer || [];
-                        function gtag(){dataLayer.push(arguments);}
-                        gtag('js', new Date());
-                        gtag('config', 'YOUR_GA_ID', {
-                            page_title: document.title,
-                            page_location: window.location.href
-                        });
-                    };
-                }
-            }, 2000);
-        });
-    </script>
-
-    <!-- Ad loading optimization -->
-    <script>
-        // Load ads after user interaction or 3 seconds, whichever comes first
-        let adsLoaded = false;
-        
-        function loadAds() {
-            if (adsLoaded) return;
-            adsLoaded = true;
-            
-            const adScript = document.createElement('script');
-            adScript.async = true;
-            adScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2169399263370531';
-            adScript.crossOrigin = 'anonymous';
-            document.head.appendChild(adScript);
-        }
-
-        // Load ads on first user interaction
-        ['mousedown', 'touchstart', 'keydown', 'scroll'].forEach(event => {
-            window.addEventListener(event, loadAds, { once: true, passive: true });
-        });
-
-        // Fallback: load ads after 3 seconds
-        setTimeout(loadAds, 3000);
-    </script>
-
-    {% block extra_js %}
-    {% endblock %}
-
-    <!-- Critical path optimization -->
-    <script>
-        // Preload next likely pages
-        function preloadLikelyPages() {
-            const likelyPages = [
-                '{% url "blog:home" %}',
-                '{% url "affiliate:link_list" %}'
-            ];
-            
-            likelyPages.forEach(url => {
-                const link = document.createElement('link');
-                link.rel = 'prefetch';
-                link.href = url;
-                document.head.appendChild(link);
-            });
-        }
-
-        // Preload after initial load
-        window.addEventListener('load', () => {
-            setTimeout(preloadLikelyPages, 2000);
-        });
-
-        // Performance monitoring
-        window.addEventListener('load', () => {
-            // Report Web Vitals
-            setTimeout(() => {
-                if ('web-vitals' in window) {
-                    // getCLS, getFID, getFCP, getLCP, getTTFB would be called here
-                    // This requires the web-vitals library
-                }
-            }, 0);
-        });
-
-        // Memory cleanup
-        window.addEventListener('beforeunload', () => {
-            // Clean up observers and timers
-            if (window.optimizer) {
-                Object.values(window.optimizer.observers).forEach(observer => {
-                    observer.disconnect();
-                });
-            }
-        });
-    </script>
-
-    <!-- Service Worker for caching -->
-    <script>
-        // Enhanced service worker registration
+        // Service Worker registration
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js', {
-                    scope: '/'
-                }).then(registration => {
-                    console.log('SW registered:', registration);
-                    
-                    // Update available
-                    registration.addEventListener('updatefound', () => {
-                        const newWorker = registration.installing;
-                        newWorker.addEventListener('statechange', () => {
-                            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                                // Show update notification
-                                if (window.optimizer) {
-                                    window.optimizer.showNotification('New version available!', 'fas fa-sync');
-                                }
-                            }
-                        });
-                    });
-                }).catch(err => {
-                    console.log('SW registration failed:', err);
-                });
+                navigator.serviceWorker.register('/sw.js').catch(console.error);
             });
         }
     </script>
+
+    {% block extra_js %}{% endblock %}
+
+    <!-- Google AdSense (load async after user interaction) -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2169399263370531" crossorigin="anonymous"></script>
 </body>
 </html>
