@@ -1,15 +1,22 @@
-# Visual Studio files
-.vs/
-*.sqlite
-
-# Django static and media files
-staticfiles/
-media/
-
-# Log files
-logs/
-*.log
-
-# Python
+# Python cache
 __pycache__/
+*.py[cod]
+*.pyo
+
+# SQLite database
+db.sqlite3
+
+# Environment files
+.env
+*.env
+
+# Django static and media
+/staticfiles/
+/media/
+
+# IDE/project files
+.vscode/
+*.log
+*.pot
 *.pyc
+*.swp
