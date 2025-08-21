@@ -303,3 +303,7 @@ if not DEBUG:
     SECURE_SSL_REDIRECT = True
     LOGGING['root']['handlers'] = ['file']
     LOGGING['loggers']['django']['handlers'] = ['file']
+    
+    # Redirects
+LOGIN_REDIRECT_URL = '/'      # After login
+LOGOUT_REDIRECT_URL = '/'     # After logout

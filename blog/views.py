@@ -517,3 +517,7 @@ def search(request):
 def search(request):
     query = request.GET.get('q', '')
     return JsonResponse({"results": [], "query": query, "message": "Search endpoint under construction"})
+
+NEWS_API_KEY = os.getenv('NEWS_API_KEY')
+if not NEWS_API_KEY:
+    raise ValueError("Missing NEWS_API_KEY in environment variables")

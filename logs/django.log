@@ -529,3 +529,386 @@ INFO 2025-08-19 20:37:52,479 basehttp 22524 6088 "GET /api/search/ HTTP/1.1" 200
 WARNING 2025-08-19 20:37:53,073 log 22524 6088 Not Found: /sw.js
 WARNING 2025-08-19 20:37:53,177 basehttp 22524 6088 "GET /sw.js HTTP/1.1" 404 6939
 INFO 2025-08-19 20:37:53,448 basehttp 22524 6088 "GET /affiliate/links/ HTTP/1.1" 200 43495
+INFO 2025-08-19 21:14:00,437 autoreload 5584 23228 Watching for file changes with StatReloader
+WARNING 2025-08-19 21:14:24,647 log 5584 20536 Not Found: /favicon.ico
+WARNING 2025-08-19 21:14:24,649 basehttp 5584 20536 "GET /favicon.ico HTTP/1.1" 404 6957
+INFO 2025-08-19 21:14:38,013 basehttp 5584 20536 "GET /static/images/DigitalHub.png HTTP/1.1" 200 972766
+WARNING 2025-08-19 21:15:09,389 log 5584 20536 Not Found: /sw.js
+WARNING 2025-08-19 21:15:09,391 basehttp 5584 20536 "GET /sw.js HTTP/1.1" 404 6939
+INFO 2025-08-19 21:17:42,405 autoreload 5584 23228 C:\Users\ADMIN\Desktop\PYTHON CODES\Claude\digital_marketing_blog\blog\views.py changed, reloading.
+INFO 2025-08-19 21:17:45,055 autoreload 13060 21308 Watching for file changes with StatReloader
+INFO 2025-08-19 21:26:03,032 basehttp 13060 11316 "GET /api/search/ HTTP/1.1" 200 77
+INFO 2025-08-19 21:26:03,048 basehttp 13060 18044 "GET /api/popular-posts/ HTTP/1.1" 200 990
+WARNING 2025-08-19 21:26:03,645 log 13060 18044 Not Found: /sw.js
+WARNING 2025-08-19 21:26:03,647 basehttp 13060 18044 "GET /sw.js HTTP/1.1" 404 6939
+INFO 2025-08-19 21:26:04,785 basehttp 13060 18044 "GET /affiliate/links/ HTTP/1.1" 200 43492
+INFO 2025-08-19 21:34:04,753 basehttp 13060 19568 "GET /post/tech/the-future-of-artificial-intelligence-in-digital-marketing-transforming-customer-engagement-in-2025/ HTTP/1.1" 200 47430
+INFO 2025-08-19 21:34:06,173 basehttp 13060 19568 "GET /api/search/ HTTP/1.1" 200 77
+INFO 2025-08-19 21:34:06,183 basehttp 13060 3296 "GET /api/popular-posts/ HTTP/1.1" 200 990
+WARNING 2025-08-19 21:34:07,082 log 13060 3296 Not Found: /sw.js
+WARNING 2025-08-19 21:34:07,082 basehttp 13060 3296 "GET /sw.js HTTP/1.1" 404 6939
+INFO 2025-08-19 21:34:07,148 basehttp 13060 3296 "GET /affiliate/links/ HTTP/1.1" 200 43492
+ERROR 2025-08-19 21:34:09,714 log 13060 3296 Internal Server Error: /accounts/login/
+Traceback (most recent call last):
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: socialaccount_socialapp
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader_tags.py", line 210, in render
+    return template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 173, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\library.py", line 237, in render
+    output = self.func(*resolved_args, **resolved_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\allauth\socialaccount\templatetags\socialaccount.py", line 79, in get_providers
+    providers = adapter.list_providers(request)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\allauth\socialaccount\adapter.py", line 193, in list_providers
+    apps = self.list_apps(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\allauth\socialaccount\adapter.py", line 251, in list_apps
+    for app in db_apps:
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 400, in __iter__
+    self._fetch_all()
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: socialaccount_socialapp
+ERROR 2025-08-19 21:34:09,914 basehttp 13060 3296 "GET /accounts/login/ HTTP/1.1" 500 331172
+WARNING 2025-08-19 21:34:12,043 log 13060 3296 Not Found: /sw.js
+WARNING 2025-08-19 21:34:12,044 basehttp 13060 3296 "GET /sw.js HTTP/1.1" 404 6939
+INFO 2025-08-19 21:38:35,695 basehttp 13060 3296 "GET /accounts/login/ HTTP/1.1" 200 2018
+WARNING 2025-08-19 21:38:37,739 log 13060 3296 Not Found: /sw.js
+WARNING 2025-08-19 21:38:37,741 basehttp 13060 3296 "GET /sw.js HTTP/1.1" 404 6939
+INFO 2025-08-19 21:40:44,773 basehttp 13060 3296 "GET /accounts/login/ HTTP/1.1" 200 2018
+WARNING 2025-08-19 21:40:46,909 log 13060 3296 Not Found: /sw.js
+WARNING 2025-08-19 21:40:46,911 basehttp 13060 3296 "GET /sw.js HTTP/1.1" 404 6939
+INFO 2025-08-19 21:40:52,880 basehttp 13060 3296 "GET /admin HTTP/1.1" 301 0
+INFO 2025-08-19 21:40:52,915 basehttp 13060 19796 "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-08-19 21:40:52,957 basehttp 13060 19796 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4160
+INFO 2025-08-19 21:40:53,681 basehttp 13060 22504 "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2804
+INFO 2025-08-19 21:40:53,705 basehttp 13060 21600 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+INFO 2025-08-19 21:40:53,709 basehttp 13060 19796 "GET /static/admin/css/base.css HTTP/1.1" 200 22092
+INFO 2025-08-19 21:40:53,742 basehttp 13060 14580 "GET /static/admin/css/login.css HTTP/1.1" 200 951
+INFO 2025-08-19 21:40:53,776 basehttp 13060 7636 "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+INFO 2025-08-19 21:40:53,776 basehttp 13060 11148 "GET /static/admin/css/responsive.css HTTP/1.1" 200 17972
+INFO 2025-08-19 21:40:53,789 basehttp 13060 11148 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+WARNING 2025-08-19 21:40:55,376 log 13060 11148 Not Found: /sw.js
+WARNING 2025-08-19 21:40:55,378 basehttp 13060 11148 "GET /sw.js HTTP/1.1" 404 6939
+INFO 2025-08-19 21:41:04,011 basehttp 13060 11148 "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO 2025-08-19 21:41:04,050 basehttp 13060 11148 "GET /admin/ HTTP/1.1" 200 20092
+INFO 2025-08-19 21:41:04,083 basehttp 13060 11148 "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+INFO 2025-08-19 21:41:04,111 basehttp 13060 7636 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+INFO 2025-08-19 21:41:04,112 basehttp 13060 11148 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+INFO 2025-08-19 21:41:04,113 basehttp 13060 14580 "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+WARNING 2025-08-19 21:41:06,122 log 13060 14580 Not Found: /sw.js
+WARNING 2025-08-19 21:41:06,124 basehttp 13060 14580 "GET /sw.js HTTP/1.1" 404 6939
+INFO 2025-08-19 21:41:32,769 basehttp 13060 14580 "GET /api/search/ HTTP/1.1" 200 77
+INFO 2025-08-19 21:41:32,784 basehttp 13060 11148 "GET /api/popular-posts/ HTTP/1.1" 200 990
+WARNING 2025-08-19 21:41:32,857 log 13060 11148 Not Found: /sw.js
+WARNING 2025-08-19 21:41:32,858 basehttp 13060 11148 "GET /sw.js HTTP/1.1" 404 6939
+INFO 2025-08-19 21:41:33,786 basehttp 13060 11148 "GET /affiliate/links/ HTTP/1.1" 200 43492
+INFO 2025-08-19 21:41:36,862 basehttp 13060 11148 "GET /post/create/ HTTP/1.1" 200 45267
+INFO 2025-08-19 21:41:38,347 basehttp 13060 11148 "GET /api/search/ HTTP/1.1" 200 77
+INFO 2025-08-19 21:41:38,370 basehttp 13060 14580 "GET /api/popular-posts/ HTTP/1.1" 200 990
+WARNING 2025-08-19 21:41:38,931 log 13060 14580 Not Found: /sw.js
+WARNING 2025-08-19 21:41:38,932 basehttp 13060 14580 "GET /sw.js HTTP/1.1" 404 6939
+INFO 2025-08-19 21:41:39,347 basehttp 13060 14580 "GET /affiliate/links/ HTTP/1.1" 200 43492
+INFO 2025-08-19 21:41:55,804 basehttp 13060 22804 "GET /post/create/ HTTP/1.1" 200 45267
+INFO 2025-08-19 21:41:56,972 basehttp 13060 22804 "GET /static/js/scripts.js HTTP/1.1" 304 0
+INFO 2025-08-19 21:41:58,085 basehttp 13060 22804 "GET /api/search/ HTTP/1.1" 200 77
+INFO 2025-08-19 21:41:58,098 basehttp 13060 17528 "GET /api/popular-posts/ HTTP/1.1" 200 990
+WARNING 2025-08-19 21:41:58,740 log 13060 17528 Not Found: /sw.js
+WARNING 2025-08-19 21:41:58,747 basehttp 13060 17528 "GET /sw.js HTTP/1.1" 404 6939
+INFO 2025-08-19 21:41:59,101 basehttp 13060 17528 "GET /affiliate/links/ HTTP/1.1" 200 43492
+WARNING 2025-08-19 21:42:37,262 log 13060 17528 Not Found: /sw.js
+WARNING 2025-08-19 21:42:37,266 basehttp 13060 17528 "GET /sw.js HTTP/1.1" 404 6939
+INFO 2025-08-19 21:46:23,829 basehttp 13060 17528 "POST /post/create/ HTTP/1.1" 302 0
+INFO 2025-08-19 21:46:23,909 basehttp 13060 17528 "GET /post/tech/the-rise-of-ai-in-web-development/ HTTP/1.1" 200 48006
+INFO 2025-08-19 21:46:26,186 basehttp 13060 17528 "GET /api/search/ HTTP/1.1" 200 77
+INFO 2025-08-19 21:46:26,201 basehttp 13060 22804 "GET /api/popular-posts/ HTTP/1.1" 200 1397
+WARNING 2025-08-19 21:46:27,033 log 13060 22804 Not Found: /sw.js
+WARNING 2025-08-19 21:46:27,034 basehttp 13060 22804 "GET /sw.js HTTP/1.1" 404 6939
+INFO 2025-08-19 21:46:27,177 basehttp 13060 22804 "GET /affiliate/links/ HTTP/1.1" 200 43492
+WARNING 2025-08-19 21:47:04,757 log 13060 22804 Not Found: /sw.js
+WARNING 2025-08-19 21:47:04,759 basehttp 13060 22804 "GET /sw.js HTTP/1.1" 404 6939
+INFO 2025-08-19 22:17:18,033 basehttp 13060 18544 "GET /api/search/ HTTP/1.1" 200 77
+INFO 2025-08-19 22:17:18,062 basehttp 13060 7564 "GET /api/popular-posts/ HTTP/1.1" 200 1397
+WARNING 2025-08-19 22:17:18,749 log 13060 7564 Not Found: /sw.js
+WARNING 2025-08-19 22:17:18,749 basehttp 13060 7564 "GET /sw.js HTTP/1.1" 404 6939
+INFO 2025-08-19 22:17:19,026 basehttp 13060 7564 "GET /affiliate/links/ HTTP/1.1" 200 43492
+INFO 2025-08-19 22:26:58,396 basehttp 13060 8048 "GET /api/popular-posts/ HTTP/1.1" 200 1397
+INFO 2025-08-19 22:26:58,429 basehttp 13060 14904 "GET /api/search/ HTTP/1.1" 200 77
+WARNING 2025-08-19 22:26:58,887 log 13060 14904 Not Found: /sw.js
+WARNING 2025-08-19 22:26:58,918 basehttp 13060 14904 "GET /sw.js HTTP/1.1" 404 6939
+INFO 2025-08-19 22:26:59,269 basehttp 13060 8048 "GET /affiliate/links/ HTTP/1.1" 200 43491
+INFO 2025-08-19 22:31:49,563 basehttp 13060 23112 "GET /api/search/ HTTP/1.1" 200 77
+INFO 2025-08-19 22:31:49,591 basehttp 13060 21840 "GET /api/popular-posts/ HTTP/1.1" 200 1397
+WARNING 2025-08-19 22:31:50,168 log 13060 21840 Not Found: /sw.js
+WARNING 2025-08-19 22:31:50,175 basehttp 13060 21840 "GET /sw.js HTTP/1.1" 404 6939
+INFO 2025-08-19 22:31:50,616 basehttp 13060 21840 "GET /affiliate/links/ HTTP/1.1" 200 43491
+INFO 2025-08-21 19:56:45,496 autoreload 22872 13792 Watching for file changes with StatReloader
+INFO 2025-08-21 19:57:14,586 basehttp 22872 20040 "GET /static/js/scripts.js HTTP/1.1" 200 1105
+INFO 2025-08-21 19:57:14,603 basehttp 22872 14536 "GET /static/fonts/flaticon/flaticon.css HTTP/1.1" 200 124
+WARNING 2025-08-21 19:57:17,270 log 22872 14536 Not Found: /sw.js
+WARNING 2025-08-21 19:57:17,274 basehttp 22872 14536 "GET /sw.js HTTP/1.1" 404 6939
+WARNING 2025-08-21 19:57:30,427 log 22872 14536 Not Found: /favicon.ico
+WARNING 2025-08-21 19:57:30,427 basehttp 22872 14536 "GET /favicon.ico HTTP/1.1" 404 6957
+WARNING 2025-08-21 19:58:05,975 log 22872 14536 Not Found: /sw.js
+WARNING 2025-08-21 19:58:05,975 basehttp 22872 14536 "GET /sw.js HTTP/1.1" 404 6939
+INFO 2025-08-21 20:03:09,400 autoreload 11004 20604 Watching for file changes with StatReloader
+WARNING 2025-08-21 20:04:21,327 log 11004 18152 Not Found: /sw.js
+WARNING 2025-08-21 20:04:21,845 basehttp 11004 18152 "GET /sw.js HTTP/1.1" 404 6939
+INFO 2025-08-21 20:05:06,692 basehttp 11004 18152 "GET /category/tech/ HTTP/1.1" 200 46859
+WARNING 2025-08-21 20:05:07,036 log 11004 18152 Not Found: /sw.js
+WARNING 2025-08-21 20:05:07,057 basehttp 11004 18152 "GET /sw.js HTTP/1.1" 404 6939
+INFO 2025-08-21 20:05:08,543 basehttp 11004 18152 "GET /static/css/enhanced.css HTTP/1.1" 200 0
+WARNING 2025-08-21 20:05:10,034 log 11004 18152 Not Found: /sw.js
+WARNING 2025-08-21 20:05:10,034 basehttp 11004 18152 "GET /sw.js HTTP/1.1" 404 6939
+WARNING 2025-08-21 20:05:51,853 log 11004 18152 Not Found: /sw.js
+WARNING 2025-08-21 20:05:51,958 basehttp 11004 18152 "GET /sw.js HTTP/1.1" 404 6939
+INFO 2025-08-21 20:21:08,884 autoreload 12264 16228 Watching for file changes with StatReloader
+INFO 2025-08-21 20:21:39,276 autoreload 12264 16228 C:\Users\ADMIN\Desktop\PYTHON CODES\Claude\digital_marketing_blog\digital_marketing_blog\settings.py changed, reloading.
+INFO 2025-08-21 20:21:40,924 autoreload 6396 1140 Watching for file changes with StatReloader
+INFO 2025-08-21 20:22:00,318 basehttp 6396 1964 "GET / HTTP/1.1" 200 56051
+INFO 2025-08-21 20:22:00,557 basehttp 6396 1964 "GET /static/fonts/flaticon/flaticon.css HTTP/1.1" 200 124
+INFO 2025-08-21 20:22:00,867 basehttp 6396 1964 "GET /static/css/styles.css HTTP/1.1" 200 158
+INFO 2025-08-21 20:22:02,137 basehttp 6396 1964 "GET /static/js/scripts.js HTTP/1.1" 200 44336
+WARNING 2025-08-21 20:22:03,437 log 6396 1964 Not Found: /sw.js
+WARNING 2025-08-21 20:22:03,437 basehttp 6396 1964 "GET /sw.js HTTP/1.1" 404 6939
+INFO 2025-08-21 20:22:03,566 basehttp 6396 23956 "GET /static/images/DigitalHub.png HTTP/1.1" 200 972766
+INFO 2025-08-21 20:22:04,450 basehttp 6396 23956 "GET /api/search/ HTTP/1.1" 200 77
+INFO 2025-08-21 20:22:04,465 basehttp 6396 1964 "GET /api/popular-posts/ HTTP/1.1" 200 1397
+INFO 2025-08-21 20:22:05,421 basehttp 6396 1964 "GET /affiliate/links/ HTTP/1.1" 200 43491
+INFO 2025-08-21 20:22:06,253 basehttp 6396 23956 "GET / HTTP/1.1" 200 56051
+WARNING 2025-08-21 20:22:19,352 log 6396 23956 Not Found: /portfolio
+WARNING 2025-08-21 20:22:19,468 basehttp 6396 23956 "GET /portfolio HTTP/1.1" 404 6951
+INFO 2025-08-21 20:22:22,000 basehttp 6396 23956 "GET /post/create/ HTTP/1.1" 302 0
+INFO 2025-08-21 20:22:22,133 basehttp 6396 23956 "GET /accounts/login/?next=/post/create/ HTTP/1.1" 200 2176
+INFO 2025-08-21 20:22:34,202 basehttp 6396 23956 "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-08-21 20:22:34,241 basehttp 6396 23956 "GET /post/create/ HTTP/1.1" 200 45610
+WARNING 2025-08-21 20:22:34,555 log 6396 23956 Not Found: /sw.js
+WARNING 2025-08-21 20:22:34,555 basehttp 6396 23956 "GET /sw.js HTTP/1.1" 404 6939
+INFO 2025-08-21 20:22:35,568 basehttp 6396 23956 "GET /api/search/ HTTP/1.1" 200 77
+INFO 2025-08-21 20:22:35,618 basehttp 6396 1964 "GET /api/popular-posts/ HTTP/1.1" 200 1397
+INFO 2025-08-21 20:22:36,590 basehttp 6396 23956 "GET /affiliate/links/ HTTP/1.1" 200 43491
+INFO 2025-08-21 20:22:37,267 basehttp 6396 1964 "GET / HTTP/1.1" 200 56051
+INFO 2025-08-21 20:23:19,239 basehttp 6396 1964 "GET / HTTP/1.1" 200 56051
+WARNING 2025-08-21 20:23:20,009 log 6396 1964 Not Found: /sw.js
+WARNING 2025-08-21 20:23:20,144 basehttp 6396 1964 "GET /sw.js HTTP/1.1" 404 6939
+INFO 2025-08-21 20:23:20,162 basehttp 6396 1964 - Broken pipe from ('127.0.0.1', 65103)
+INFO 2025-08-21 20:23:20,540 basehttp 6396 23956 "GET /api/search/ HTTP/1.1" 200 77
+INFO 2025-08-21 20:23:20,556 basehttp 6396 4648 "GET /api/popular-posts/ HTTP/1.1" 200 1397
+INFO 2025-08-21 20:23:21,538 basehttp 6396 23956 "GET /affiliate/links/ HTTP/1.1" 200 43491
+INFO 2025-08-21 20:23:22,206 basehttp 6396 4648 "GET / HTTP/1.1" 200 56051
+INFO 2025-08-21 20:23:24,686 basehttp 6396 4648 "GET /admin HTTP/1.1" 301 0
+INFO 2025-08-21 20:23:24,988 basehttp 6396 23956 "GET /admin/ HTTP/1.1" 200 20092
+INFO 2025-08-21 20:23:25,061 basehttp 6396 23956 "GET /static/admin/css/base.css HTTP/1.1" 200 22092
+INFO 2025-08-21 20:23:25,080 basehttp 6396 11204 "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2804
+INFO 2025-08-21 20:23:25,081 basehttp 6396 22788 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+INFO 2025-08-21 20:23:25,081 basehttp 6396 8748 "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+INFO 2025-08-21 20:23:25,086 basehttp 6396 24572 "GET /static/admin/css/responsive.css HTTP/1.1" 200 17972
+INFO 2025-08-21 20:23:25,088 basehttp 6396 20468 "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+INFO 2025-08-21 20:23:25,102 basehttp 6396 24572 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+INFO 2025-08-21 20:23:25,105 basehttp 6396 22788 "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+INFO 2025-08-21 20:23:25,105 basehttp 6396 8748 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+INFO 2025-08-21 20:23:25,115 basehttp 6396 20468 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+INFO 2025-08-21 20:23:37,475 basehttp 6396 20468 "GET /admin/blog/category/add/ HTTP/1.1" 200 19989
+INFO 2025-08-21 20:23:37,513 basehttp 6396 20468 "GET /static/admin/css/forms.css HTTP/1.1" 200 8794
+INFO 2025-08-21 20:23:37,538 basehttp 6396 11204 "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+INFO 2025-08-21 20:23:37,539 basehttp 6396 24572 "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+INFO 2025-08-21 20:23:37,542 basehttp 6396 23956 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9097
+INFO 2025-08-21 20:23:37,546 basehttp 6396 8748 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-08-21 20:23:37,547 basehttp 6396 22788 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+INFO 2025-08-21 20:23:37,559 basehttp 6396 11204 "GET /static/admin/css/widgets.css HTTP/1.1" 200 11564
+INFO 2025-08-21 20:23:37,560 basehttp 6396 24572 "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+INFO 2025-08-21 20:23:37,561 basehttp 6396 23956 "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+INFO 2025-08-21 20:23:37,565 basehttp 6396 20468 "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+INFO 2025-08-21 20:23:37,573 basehttp 6396 8748 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+INFO 2025-08-21 20:23:37,573 basehttp 6396 22788 "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+INFO 2025-08-21 20:23:37,590 basehttp 6396 22788 "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+INFO 2025-08-21 20:24:26,294 basehttp 6396 22788 "POST /admin/blog/category/add/ HTTP/1.1" 302 0
+INFO 2025-08-21 20:24:26,344 basehttp 6396 22788 "GET /admin/blog/category/ HTTP/1.1" 200 18438
+INFO 2025-08-21 20:24:26,386 basehttp 6396 22788 "GET /static/admin/css/changelists.css HTTP/1.1" 200 6878
+INFO 2025-08-21 20:24:26,388 basehttp 6396 8748 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-08-21 20:24:26,394 basehttp 6396 22788 "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+INFO 2025-08-21 20:24:26,567 basehttp 6396 8748 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+INFO 2025-08-21 20:24:26,568 basehttp 6396 22788 "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+INFO 2025-08-21 20:24:26,568 basehttp 6396 20468 "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+INFO 2025-08-21 20:24:32,671 basehttp 6396 20468 "GET /post/create/ HTTP/1.1" 200 45304
+INFO 2025-08-21 20:24:32,878 basehttp 6396 20468 "GET /static/js/scripts.js HTTP/1.1" 304 0
+WARNING 2025-08-21 20:24:32,969 log 6396 20468 Not Found: /sw.js
+WARNING 2025-08-21 20:24:32,969 basehttp 6396 20468 "GET /sw.js HTTP/1.1" 404 6939
+INFO 2025-08-21 20:24:33,985 basehttp 6396 20468 "GET /api/search/ HTTP/1.1" 200 77
+INFO 2025-08-21 20:24:34,002 basehttp 6396 8748 "GET /api/popular-posts/ HTTP/1.1" 200 1397
+INFO 2025-08-21 20:24:34,987 basehttp 6396 20468 "GET /affiliate/links/ HTTP/1.1" 200 43491
+INFO 2025-08-21 20:24:35,784 basehttp 6396 8748 "GET / HTTP/1.1" 200 56645
+INFO 2025-08-21 20:25:02,709 basehttp 6396 8748 "GET /admin/blog/category/add/ HTTP/1.1" 200 19989
+INFO 2025-08-21 20:25:02,757 basehttp 6396 8748 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-08-21 20:25:10,334 basehttp 6396 8748 "POST /admin/blog/category/add/ HTTP/1.1" 302 0
+INFO 2025-08-21 20:25:10,367 basehttp 6396 8748 "GET /admin/blog/category/ HTTP/1.1" 200 18717
+INFO 2025-08-21 20:25:10,410 basehttp 6396 8748 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-08-21 20:25:22,339 basehttp 6396 8748 "GET /admin/blog/category/add/ HTTP/1.1" 200 19989
+INFO 2025-08-21 20:25:22,376 basehttp 6396 8748 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-08-21 20:25:28,967 basehttp 6396 8748 "POST /admin/blog/category/add/ HTTP/1.1" 302 0
+INFO 2025-08-21 20:25:28,999 basehttp 6396 8748 "GET /admin/blog/category/ HTTP/1.1" 200 19012
+INFO 2025-08-21 20:25:29,042 basehttp 6396 8748 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-08-21 20:25:33,129 basehttp 6396 8748 "GET /post/create/ HTTP/1.1" 200 45375
+WARNING 2025-08-21 20:25:33,398 log 6396 8748 Not Found: /sw.js
+WARNING 2025-08-21 20:25:33,398 basehttp 6396 8748 "GET /sw.js HTTP/1.1" 404 6939
+INFO 2025-08-21 20:25:34,411 basehttp 6396 8748 "GET /api/search/ HTTP/1.1" 200 77
+INFO 2025-08-21 20:25:34,427 basehttp 6396 20468 "GET /api/popular-posts/ HTTP/1.1" 200 1397
+INFO 2025-08-21 20:25:35,427 basehttp 6396 8748 "GET /affiliate/links/ HTTP/1.1" 200 43491
+INFO 2025-08-21 20:25:36,178 basehttp 6396 20468 "GET / HTTP/1.1" 200 57823
+INFO 2025-08-21 20:25:39,576 basehttp 6396 20468 "GET / HTTP/1.1" 200 57823
+WARNING 2025-08-21 20:25:39,974 log 6396 20468 Not Found: /sw.js
+WARNING 2025-08-21 20:25:39,976 basehttp 6396 20468 "GET /sw.js HTTP/1.1" 404 6939
+INFO 2025-08-21 20:25:40,978 basehttp 6396 20468 "GET /api/search/ HTTP/1.1" 200 77
+INFO 2025-08-21 20:25:40,987 basehttp 6396 8748 "GET /api/popular-posts/ HTTP/1.1" 200 1397
+INFO 2025-08-21 20:25:42,082 basehttp 6396 20468 "GET /affiliate/links/ HTTP/1.1" 200 43491
+INFO 2025-08-21 20:25:42,724 basehttp 6396 8748 "GET / HTTP/1.1" 200 57823
+INFO 2025-08-21 20:26:10,775 basehttp 6396 8748 "GET /post/tech/the-rise-of-ai-in-web-development/ HTTP/1.1" 200 47667
+WARNING 2025-08-21 20:26:11,140 log 6396 8748 Not Found: /sw.js
+WARNING 2025-08-21 20:26:11,161 basehttp 6396 8748 "GET /sw.js HTTP/1.1" 404 6939
+INFO 2025-08-21 20:26:12,128 basehttp 6396 8748 "GET /api/search/ HTTP/1.1" 200 77
+INFO 2025-08-21 20:26:12,178 basehttp 6396 20468 "GET /api/popular-posts/ HTTP/1.1" 200 1397
+INFO 2025-08-21 20:26:13,128 basehttp 6396 8748 "GET /affiliate/links/ HTTP/1.1" 200 43491
+INFO 2025-08-21 20:26:14,305 basehttp 6396 20468 "GET / HTTP/1.1" 200 57823
+INFO 2025-08-21 20:26:42,044 basehttp 6396 20468 "GET /admin/blog/category/add/ HTTP/1.1" 200 19989
+INFO 2025-08-21 20:26:42,091 basehttp 6396 20468 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-08-21 20:26:51,869 basehttp 6396 20468 "POST /admin/blog/category/add/ HTTP/1.1" 302 0
+INFO 2025-08-21 20:26:51,885 basehttp 6396 20468 "GET /admin/blog/category/ HTTP/1.1" 200 19320
+INFO 2025-08-21 20:26:51,937 basehttp 6396 20468 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
