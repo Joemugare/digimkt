@@ -27,4 +27,7 @@ psycopg2-binary
 setuptools_scm>=7.0
 requests>=2.31.0
 
+
 djangorestframework==3.14.0
+
+
