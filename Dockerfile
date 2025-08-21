@@ -22,8 +22,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy project files
 COPY . .
 
-# Collect static files (ignore .map to avoid Bootstrap issues)
-RUN python manage.py collectstatic --noinput --ignore="*.map"
+# Collect static files (ignore Bootstrap source maps)
+RUN python manage.py collectstatic --noinput --ignore=*.map
 
 # Expose port
 EXPOSE 8000
